@@ -186,6 +186,7 @@
             jQuery('#myModalLabelHTML').html(title);
             jQuery('#myModalInfo').modal('show');
             jQuery('#myModalInfo').data('bs.modal').handleUpdate();
+            jQuery("#myModalInfo").on("hidden.bs.modal", function () { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
             return false;
         }
         function PopUpClient(title, clientId) {
@@ -193,6 +194,7 @@
             jQuery('#myModalLabelHTML').html(title);
             jQuery('#myModalInfo').modal('show');
             jQuery('#myModalInfo').data('bs.modal').handleUpdate();
+            jQuery("#myModalInfo").on("hidden.bs.modal", function () { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
             return false;
         }
 

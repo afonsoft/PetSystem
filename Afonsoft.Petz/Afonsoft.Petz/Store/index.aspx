@@ -157,6 +157,7 @@
         jQuery('#modal-dialog').css({ width: "auto", "min-width": "700px", "max-width": "850px" });
         jQuery('#myModalInfo').modal('show');
         jQuery('#myModalInfo').data('bs.modal').handleUpdate();
+        jQuery("#myModalInfo").on("hidden.bs.modal", function () { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
         ConfigContextMenu();
     }
 
@@ -170,6 +171,7 @@
                 jQuery('#modal-dialog').css({ width: "600px" });
                 jQuery('#myModalInfo').modal('show');
                 jQuery('#myModalInfo').data('bs.modal').handleUpdate();
+                jQuery("#myModalInfo").on("hidden.bs.modal", function () { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
             } else {
                 NotifyError('Não é permitido incluir agendamendo passado (' + moment(date).format('DD/MM/YYYY') + ').<br/>Favor escolher uma data superior ou igual a hoje!', null);
             }

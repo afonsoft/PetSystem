@@ -88,7 +88,7 @@
                         <div id="myModalAlertHTML">&nbsp;</div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:jQuery('#myModalAlert').modal('hide');">Fechar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:jQuery('body').css({ 'background-color': '#F1F3FA !important' });jQuery('#myModalAlert').modal('hide');">Fechar</button>
                     </div>
                 </div>
             </div>
@@ -103,14 +103,7 @@
 
         <!-- Google Analytics -->
         <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-23515540-2', 'auto');
-            ga('send', 'pageview');
+            (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-23515540-2', 'auto'); ga('send', 'pageview');
         </script>
         <!-- End Google Analytics -->
     </form>

@@ -32,9 +32,11 @@ if (typeof (Sys) !== 'undefined') {
     }
 }
 
+// ReSharper disable once UnusedParameter
 function BeginAjaxHandler(sender, args) {
     UpdateShow();
 }
+// ReSharper disable once UnusedParameter
 function EndAjaxHandler(sender, args) {
     UpdateHide();
 }
@@ -55,32 +57,34 @@ function UpdateShow() {
 function UpdateHide() {
     jQuery('#updateProgress-img').css({ left: (pageWidth() - jQuery('#updateProgress-img').outerWidth()) / 2, top: ((pageHeight() - jQuery('#updateProgress-img').outerHeight()) / 2) + posTop() });
     jQuery('#updateProgress').css({ position: 'absolute', display: 'none' });
+    jQuery('body').css({ 'background-color': "#F1F3FA !important" });
 }
 
 function ModalAlert(msg) {
     jQuery('#myModalAlertHTML').html(msg);
     jQuery('#myModalAlert').modal('show');
     jQuery('#myModalAlert').data('bs.modal').handleUpdate();
+    jQuery("#myModalAlert").on("hidden.bs.modal", function () {jQuery('body').css({'background-color': "#F1F3FA !important"});});
     return false;
 }
 
 function NotifySuccess(message, url) {
-    return NotifyAlert('', message, 'success', 'glyphicon glyphicon-ok-sign', url);
+    return NotifyAlert("", message, "success", "glyphicon glyphicon-ok-sign", url);
 }
 function NotifyInfo(message, url) {
-    return NotifyAlert('', message, 'info', 'glyphicon glyphicon-exclamation-sign', url);
+    return NotifyAlert("", message, "info", "glyphicon glyphicon-exclamation-sign", url);
 }
 function NotifyWarning(message, url) {
-    return NotifyAlert('', message, 'warning', 'glyphicon glyphicon-warning-sign', url);
+    return NotifyAlert("", message, "warning", "glyphicon glyphicon-warning-sign", url);
 }
 function NotifyError(message, url) {
-    return NotifyAlert('', message, 'danger', 'glyphicon glyphicon-remove-sign', url);
+    return NotifyAlert("", message, "danger", "glyphicon glyphicon-remove-sign", url);
 }
 
-function NotifyImage(title, message, type, url_img, url) {
+function NotifyImage(title, message, type, urlImg, url) {
     jQuery(document).ready(function () {
         jQuery.notify({
-            icon: url_img,
+            icon: urlImg,
             title: title,
             message: message,
             url: url,
@@ -110,6 +114,7 @@ function NotifyAlert(title, message, type, icon, url) {
     });
 }
 
+// ReSharper disable once UnusedParameter
 function AjaxHTML(objId, url) {
     UpdateShow();
     jQuery('#' + objId).html("<img src='/Images/loader3.gif'/> Aguarde...");
@@ -134,10 +139,10 @@ function AjaxHTML(objId, url) {
     });
 }
 
+// ReSharper disable once UnusedParameter
 function AjaxJSON(url, parametros) {
     UpdateShow();
-    var retorno = "";
-    retorno = jQuery.ajax({
+    var retorno = jQuery.ajax({
         type: 'POST',
         url: url,
         contentType: 'application/json; charset=utf-8',
