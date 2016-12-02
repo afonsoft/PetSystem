@@ -10,19 +10,13 @@ namespace Afonsoft.Petz.Store
 
         public ClientEntity[] ListClientEntities
         {
-            get
-            {
-                return Session["Clients"] as ClientEntity[];
-            }
-            set
-            {
-                Session["Clients"] = value;
-            }
+            get { return Session["Clients"] as ClientEntity[]; }
+            set { Session["Clients"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var store = (Store)(Page.Master);
+            var store = (Store) (Page.Master);
             store?.ChangeActiveMenu("clients");
 
             if (UsuarioLogado == null)
@@ -39,7 +33,7 @@ namespace Afonsoft.Petz.Store
                     var infoClient = ListClientEntities?.FirstOrDefault(x => x.Id == clientId);
                     if (infoClient != null)
                     {
-                        
+
                     }
                 }
             }

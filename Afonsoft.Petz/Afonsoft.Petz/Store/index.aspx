@@ -148,7 +148,6 @@
                     ConfigContextMenu();
                 }
             }
-            debugger; 
             if (option == 'open') {
                 AjaxHTML('myModalInfoHTML', '/Store/CalenderDetail.aspx?ID=<%= CompanyId %>&AddressID=<%=AddressId%>&EventID=' + id + '&Token=<%=SecurityToken%>');
             } else if (option == 'edit') {

@@ -450,10 +450,9 @@ namespace Afonsoft.Petz.Controller
             }
         }
 
-        public void SetPetsClient(PetsEntity petEntity, int clientId, int? userId = null)
+        public void SetPetsClient(PetsEntity petEntity, int? userId = null)
         {
-            if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+           
 
             if (petEntity == null)
                 throw new ArgumentNullException(nameof(petEntity), "petEntity is null");
@@ -463,6 +462,9 @@ namespace Afonsoft.Petz.Controller
 
             if (petEntity.Size == null || petEntity.Size.Id <= 0)
                 throw new ArgumentNullException(nameof(petEntity.Size), "petEntity.Size is null");
+
+            if (petEntity.ClientId <= 0)
+                throw new ArgumentNullException(nameof(petEntity.ClientId), "ClientID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -474,7 +476,7 @@ namespace Afonsoft.Petz.Controller
                     if (userId != null && userId > 0)
                         pet.insert_user_id = userId.Value;
                     else
-                        pet.insert_client_id = clientId;
+                        pet.insert_client_id = petEntity.ClientId;
 
                     pet.pet_birthday = petEntity.Birthday;
                     pet.pet_color = petEntity.Color;
@@ -499,9 +501,9 @@ namespace Afonsoft.Petz.Controller
                     db.SaveChanges();
 
                     int petId = pet.pet_id;
-                    if (clientId > 0)
+                    if (petEntity.ClientId > 0)
                     {
-                        db.petz_Client_Pet.Add(new petz_Client_Pet() { pet_id = petId, client_id = clientId });
+                        db.petz_Client_Pet.Add(new petz_Client_Pet() { pet_id = petId, client_id = petEntity.ClientId });
                         db.SaveChanges();
                     }
                 }
@@ -509,8 +511,8 @@ namespace Afonsoft.Petz.Controller
                 {
                     //update
                     Boolean isPetClient = false;
-                    if (clientId > 0)
-                        isPetClient = db.petz_Client_Pet.Count(x => x.pet_id == petEntity.Id && x.client_id == clientId) == 1;
+                    if (petEntity.ClientId > 0)
+                        isPetClient = db.petz_Client_Pet.Count(x => x.pet_id == petEntity.Id && x.client_id == petEntity.ClientId) == 1;
 
                     if (isPetClient)
                     {
@@ -521,7 +523,7 @@ namespace Afonsoft.Petz.Controller
                             if (userId != null && userId > 0)
                                 pet.update_user_id = userId.Value;
                             else
-                                pet.update_client_id = clientId;
+                                pet.update_client_id = petEntity.ClientId;
 
                             pet.pet_birthday = petEntity.Birthday;
                             pet.pet_color = petEntity.Color;
@@ -553,23 +555,23 @@ namespace Afonsoft.Petz.Controller
             }
         }
 
-        public void DeletePetsClient(PetsEntity petEntity, int clientId, int? userId = null)
+        public void DeletePetsClient(PetsEntity petEntity, int? userId = null)
         {
-            if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
-
             if (petEntity == null)
                 throw new ArgumentNullException(nameof(petEntity), "petEntity is null");
 
             if (petEntity.Id <= 0)
                 throw new ArgumentNullException(nameof(petEntity.Id), "petEntity.ID is null");
 
+            if (petEntity.ClientId <= 0)
+                throw new ArgumentNullException(nameof(petEntity.ClientId), "ClientID is null");
+
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
                 //update
                 Boolean isPetClient = false;
-                if (clientId > 0)
-                    isPetClient = db.petz_Client_Pet.Count(x => x.pet_id == petEntity.Id && x.client_id == clientId) == 1;
+                if (petEntity.ClientId > 0)
+                    isPetClient = db.petz_Client_Pet.Count(x => x.pet_id == petEntity.Id && x.client_id == petEntity.ClientId) == 1;
 
                 if (isPetClient)
                 {
@@ -579,7 +581,7 @@ namespace Afonsoft.Petz.Controller
                         if (userId != null && userId > 0)
                             pet.update_user_id = userId.Value;
                         else
-                            pet.update_client_id = clientId;
+                            pet.update_client_id = petEntity.ClientId;
                         pet.date_delete = DateTime.Now;
                         db.SaveChanges();
                     }
@@ -596,7 +598,7 @@ namespace Afonsoft.Petz.Controller
             if (id <= 0)
                 throw new ArgumentNullException(nameof(id), "ID is null");
 
-            using (Petz_dbEntities db = new Petz_dbEntities())
+            using (var db = new Petz_dbEntities())
             {
                 return (from pc in db.petz_Client_Pet
                         join p in db.petz_Pets on pc.pet_id equals p.pet_id
@@ -607,6 +609,7 @@ namespace Afonsoft.Petz.Controller
                         && p.date_delete == null
                         select new PetsEntity()
                         {
+                            ClientId = pc.client_id,
                             Birthday = p.pet_birthday,
                             Color = p.pet_color,
                             Document = p.pet_document,

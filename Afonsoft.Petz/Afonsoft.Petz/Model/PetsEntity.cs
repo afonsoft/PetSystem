@@ -9,6 +9,7 @@ namespace Afonsoft.Petz.Model
     public class PetsEntity : IComparer<PetsEntity>, IComparable<PetsEntity>
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public string Name { get; set; }
         public string NickName { get; set; }
         public string Document { get; set; }
@@ -61,7 +62,7 @@ namespace Afonsoft.Petz.Model
 
         public override string ToString()
         {
-            return Date.ToString("dd/MM/yyyy") + " : " + (Employee != null && Employee.User != null ? Employee.User.UserName : "Employee") + " - " + Comments;
+            return Date.ToString("dd/MM/yyyy") + " : " + (Employee?.User != null ? Employee.User.UserName : "Employee") + " - " + Comments;
         }
 
         #region IComparer Members

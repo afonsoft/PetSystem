@@ -17,10 +17,14 @@ namespace Afonsoft.Petz.ws
     [System.Web.Script.Services.ScriptService]
     public class Service : WebService
     {
-        readonly string _baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath?.TrimEnd('/') + "/";
+        readonly string _baseUrl = HttpContext.Current.Request.Url.Scheme + "://" +
+                                   HttpContext.Current.Request.Url.Authority +
+                                   HttpContext.Current.Request.ApplicationPath?.TrimEnd('/') + "/";
+
         public AuthHeader AuthHeader = new AuthHeader();
 
         #region Authenticate
+
         [WebMethod(Description = "Method to perform authentication on WebService (Efetuar o login no WebService )")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.Out)]
         public ResponseMessage Authenticate(ClientCredentials clientCredentials)
@@ -70,7 +74,10 @@ namespace Afonsoft.Petz.ws
                 if (id > 0)
                 {
                     //SessionId|ID|yyyyMMddHHmmss|IpAddress|C
-                    AuthHeader.SecurityToken = Cryptographic.Encryptor(AuthHeader.SessionId + "|" + id + "|" + DateTime.Now.AddMinutes(20).ToString("yyyyMMddHHmmss") + "|" + ipAddress + "|C");
+                    AuthHeader.SecurityToken =
+                        Cryptographic.Encryptor(AuthHeader.SessionId + "|" + id + "|" +
+                                                DateTime.Now.AddMinutes(20).ToString("yyyyMMddHHmmss") + "|" + ipAddress +
+                                                "|C");
                     securityReply.Message = "Authentication successfully";
                     securityReply.Success = true;
                     return securityReply;
@@ -90,9 +97,11 @@ namespace Afonsoft.Petz.ws
                 return securityReply;
             }
         }
+
         #endregion
 
         #region SignOut
+
         [WebMethod(Description = "Method to make the SignOut")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SignOut()
@@ -112,9 +121,11 @@ namespace Afonsoft.Petz.ws
 
             return securityReply;
         }
+
         #endregion
 
         #region GetStates
+
         [WebMethod(Description = "Method to take a states (Estados Brasileiro)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public StatesEntity[] GetStates(int id)
@@ -131,9 +142,11 @@ namespace Afonsoft.Petz.ws
 
             return states.Where(x => x.Id == (id <= 0 ? x.Id : id)).ToArray();
         }
+
         #endregion
 
         #region CreateClient
+
         [WebMethod(Description = "Method to create a client (Criar um novo Cliente)")]
         public ResponseMessage CreateClient(ClientEntity clientEntity, String password)
         {
@@ -153,9 +166,11 @@ namespace Afonsoft.Petz.ws
             }
             return replay;
         }
+
         #endregion
 
         #region ChangePassword
+
         [WebMethod(Description = "Method to Change a Password of client (Alterar a senha do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage ChangePassword(String password, String newPassword1, String newPassword2)
@@ -181,9 +196,11 @@ namespace Afonsoft.Petz.ws
             }
             return replay;
         }
+
         #endregion
 
         #region GetClientInformation
+
         [WebMethod(Description = "Method to take client in the session (Recuperar as informações do Cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ClientEntity GetClientInformation()
@@ -192,9 +209,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetClient(id);
         }
+
         #endregion
 
         #region SetClientInformation
+
         [WebMethod(Description = "Method to set a client Information (Atualizar as informações do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetClientInformation(ClientEntity clientEntity)
@@ -224,9 +243,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetClientPicture
+
         [WebMethod(Description = "Method to take picture of client  (Recuperar a foto do Cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetClientPicture()
@@ -240,14 +261,19 @@ namespace Afonsoft.Petz.ws
                 Binary = controller.GetClientPicture(id)
             };
             if (entity.Binary != null)
-                entity.Url = HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=CLIENT&token=" + AuthHeader.SecurityToken);
+                entity.Url =
+                    HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=CLIENT&token=" +
+                                           AuthHeader.SecurityToken);
             return entity;
         }
 
         #endregion
 
         #region SetClientPicture
-        [WebMethod(Description = "Method to set a client picture (Base64) (Alterar a foto do cliete por Byte ou pela url da foto)")]
+
+        [WebMethod(
+             Description =
+                 "Method to set a client picture (Base64) (Alterar a foto do cliete por Byte ou pela url da foto)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetClientPicture(ImageEntity entity)
         {
@@ -287,9 +313,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region SetClientPhone
+
         [WebMethod(Description = "Method to set a client phone (Alterar os telefones do cliete)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetClientPhone(PhoneEntity[] phones)
@@ -313,9 +341,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region DeleteClientPhone
+
         [WebMethod(Description = "Method to delete a client phone (delete o telefone do cliete)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage DeleteClientPhone(PhoneEntity phone)
@@ -339,9 +369,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetClientAddress
+
         [WebMethod(Description = "Method to take client Address (Recuperar os endereços do Cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public AddressEntity[] GetClientAddress()
@@ -350,9 +382,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetClientAddress(id);
         }
+
         #endregion
 
         #region SetClientAddress
+
         [WebMethod(Description = "Method to set a client Address (Adicionar ou atualizar um endereço do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetClientAddress(AddressEntity addressEntity)
@@ -375,9 +409,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetClientPets
+
         [WebMethod(Description = "Method to take user pets (Recuperar os pets do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public PetsEntity[] GetClientPets()
@@ -386,9 +422,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetPetsClient(clientId);
         }
+
         #endregion
 
         #region SetClientPets
+
         [WebMethod(Description = "Method to set user pets (Adicionar ou atualizar um pet do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetClientPets(PetsEntity petsEntity)
@@ -398,9 +436,17 @@ namespace Afonsoft.Petz.ws
             {
                 int id = ValidSecurityToken(AuthHeader);
                 ClientsController controller = new ClientsController();
-                controller.SetPetsClient(petsEntity, id);
-                replay.Success = true;
-                replay.Message = "Pet insert or update successfully";
+                if (petsEntity.ClientId == id)
+                {
+                    controller.SetPetsClient(petsEntity);
+                    replay.Success = true;
+                    replay.Message = "Pet insert or update successfully";
+                }
+                else
+                {
+                    replay.Success = false;
+                    replay.Message = "This Pet is not of this client";
+                }
                 return replay;
             }
             catch (Exception ex)
@@ -411,9 +457,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetPetHistoric
+
         [WebMethod(Description = "Method to get pets historic (Recuperar o historico do pet)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public HistoricEntity[] GetPetHistoric(int petId)
@@ -422,9 +470,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetPetHistoric(clientId, petId);
         }
+
         #endregion
 
         #region GetPetVaccination
+
         [WebMethod(Description = "Method to get pet Vaccination (Recuperar as vacinas do pet)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public VaccinationEntity[] GetPetVaccination(int petId)
@@ -433,9 +483,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetPetVaccination(clientId, petId);
         }
+
         #endregion
 
         #region DeleteClientPets
+
         [WebMethod(Description = "Method to delete user pets (Remover um pet do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage DeleteClientPets(PetsEntity petsEntity)
@@ -458,9 +510,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetPetSpecies
+
         [WebMethod(Description = "Method to take pets Species (Recuperar as Especies)", EnableSession = true)]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SpeciesEntity[] GetPetSpecies(String name = "")
@@ -481,9 +535,11 @@ namespace Afonsoft.Petz.ws
             else
                 return species.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToArray();
         }
+
         #endregion
 
         #region GetPetSubSpecies
+
         [WebMethod(Description = "Method to take pets Sub Species (Recuperar as Sub Especies)", EnableSession = true)]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SubSpeciesEntity[] GetPetSubSpecies(int? speciesId = 0, String name = "")
@@ -508,10 +564,13 @@ namespace Afonsoft.Petz.ws
 
             return subSpecies;
         }
+
         #endregion
 
         #region GetPetBreed
-        [WebMethod(Description = "Method to take pets Breed (recuperar as Raças de uma Sub Especie)", EnableSession = true)]
+
+        [WebMethod(Description = "Method to take pets Breed (recuperar as Raças de uma Sub Especie)",
+             EnableSession = true)]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public BreedEntity[] GetPetBreed(int? subSpeciesId = 0, String name = "")
         {
@@ -535,9 +594,11 @@ namespace Afonsoft.Petz.ws
 
             return breed;
         }
+
         #endregion
 
         #region GetPetSize
+
         [WebMethod(Description = "Method to take pets Size (recuperar os tamanhos dos pets)", EnableSession = true)]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SizeEntity[] GetPetSize(int? id = 0, String name = "")
@@ -562,9 +623,11 @@ namespace Afonsoft.Petz.ws
 
             return size;
         }
+
         #endregion
 
         #region GetCompanies
+
         [WebMethod(Description = "Method to take Companies (Listar os PetShop)", EnableSession = true)]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompaniesEntity[] GetCompanies(int? id = 0, String name = "")
@@ -586,9 +649,11 @@ namespace Afonsoft.Petz.ws
             return companies;
 
         }
+
         #endregion
 
         #region GetFavoriteCompanies
+
         [WebMethod(Description = "Method to take Favorite Companies (Listar os PetShop favoritos do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompaniesEntity[] GetFavoriteCompanies()
@@ -597,9 +662,11 @@ namespace Afonsoft.Petz.ws
             ClientsController controller = new ClientsController();
             return controller.GetClientCompanies(clientId);
         }
+
         #endregion
 
         #region SetFavoriteCompanies
+
         [WebMethod(Description = "Method to Set a Favorite Companies (Adicionar o PetShop ao favorito)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetFavoriteCompanies(int conpanyId)
@@ -622,9 +689,11 @@ namespace Afonsoft.Petz.ws
             return replay;
 
         }
+
         #endregion
 
         #region DeleteFavoriteCompanies
+
         [WebMethod(Description = "Method to Set a Favorite Companies (remover o PetShop ao favorito)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage DeleteFavoriteCompanies(int conpanyId)
@@ -647,9 +716,11 @@ namespace Afonsoft.Petz.ws
             return replay;
 
         }
+
         #endregion
 
         #region GetScheduling
+
         [WebMethod(Description = "Method to take Scheduling (Listar os agendamentos do cliente)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SchedulingEntity[] GetScheduling()
@@ -658,9 +729,11 @@ namespace Afonsoft.Petz.ws
             SchedulingController controller = new SchedulingController();
             return controller.GetSchedulingClient(clientId);
         }
+
         #endregion
 
         #region DeleteScheduling
+
         [WebMethod(Description = "Method to delete a Scheduling (remover um agendamento)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage DeleteScheduling(int schedulingId)
@@ -683,10 +756,13 @@ namespace Afonsoft.Petz.ws
             return replay;
 
         }
+
         #endregion
 
         #region SetConfirmScheduling
-        [WebMethod(Description = "Method to Confirm a Scheduling (confirmar um agendamento feito ou alterado pela loja)")]
+
+        [WebMethod(Description = "Method to Confirm a Scheduling (confirmar um agendamento feito ou alterado pela loja)"
+         )]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetConfirmScheduling(int schedulingId)
         {
@@ -707,9 +783,11 @@ namespace Afonsoft.Petz.ws
             }
             return replay;
         }
+
         #endregion
 
         #region SetScheduling
+
         [WebMethod(Description = "Method to Set a Scheduling (Adicionar um agendamento)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetScheduling(SchedulingEntityInsertOrUpdate insertOrUpdate)
@@ -737,9 +815,11 @@ namespace Afonsoft.Petz.ws
             return replay;
 
         }
+
         #endregion
 
         #region GetCalender
+
         [WebMethod(Description = "Method to take a calender from company (Listar o calendário de um petshop)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompanyCalenderEntity[] GetCalender(int companyId)
@@ -748,9 +828,11 @@ namespace Afonsoft.Petz.ws
             SchedulingController controller = new SchedulingController();
             return controller.GetCompanyCalender(companyId);
         }
+
         #endregion
 
         #region GetCompanyPicture
+
         [WebMethod(Description = "Method to take picture of company in Byte (Recuperar a foto da CIA em Byte)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetCompanyPicture(int id)
@@ -764,7 +846,9 @@ namespace Afonsoft.Petz.ws
                 Binary = controller.GetCompanyPicture(id)
             };
             if (entity.Binary != null)
-                entity.Url = HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=COMPANY&token=" + AuthHeader.SecurityToken);
+                entity.Url =
+                    HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=COMPANY&token=" +
+                                           AuthHeader.SecurityToken);
             return entity;
         }
 
@@ -772,6 +856,7 @@ namespace Afonsoft.Petz.ws
         #endregion
 
         #region GetPetPicture
+
         [WebMethod(Description = "Method to take picture of PET in Byte (Recuperar a foto do PET em Byte)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetPetPicture(int id)
@@ -785,13 +870,18 @@ namespace Afonsoft.Petz.ws
                 Binary = controller.GetPetClientPicture(clientId, id)
             };
             if (entity.Binary != null)
-                entity.Url = HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=PET&token=" + AuthHeader.SecurityToken);
+                entity.Url =
+                    HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=PET&token=" +
+                                           AuthHeader.SecurityToken);
             return entity;
         }
+
         #endregion
 
         #region SetPetPicture
-        [WebMethod(Description = "Method to set a pet picture (Base64) (Alterar a foto do pet por Byte ou pela url da foto)")]
+
+        [WebMethod(
+             Description = "Method to set a pet picture (Base64) (Alterar a foto do pet por Byte ou pela url da foto)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetPetPicture(ImageEntity entity)
         {
@@ -835,12 +925,14 @@ namespace Afonsoft.Petz.ws
         #endregion
 
         #region ValidSecurityToken
+
         private int ValidSecurityToken(AuthHeader authHeader)
         {
             if (authHeader != null)
             {
                 if (string.IsNullOrEmpty(authHeader.SecurityToken))
-                    throw new SoapException("SecurityToken is invalid", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("SecurityToken is invalid", SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
 
                 //SessionId|ID|yyyyMMddHHmmss|IpAddress
                 string[] variableToken;
@@ -850,11 +942,13 @@ namespace Afonsoft.Petz.ws
                 }
                 catch (Exception ex)
                 {
-                    throw new SoapException("SecurityToken is invalid - " + ex.Message, SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("SecurityToken is invalid - " + ex.Message, SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
                 }
 
                 if (variableToken.Length <= 2)
-                    throw new SoapException("SecurityToken is invalid", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("SecurityToken is invalid", SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
 
                 string clientIdOrUserId = variableToken[1].Trim();
                 string sessionId = variableToken[0].Trim();
@@ -866,26 +960,33 @@ namespace Afonsoft.Petz.ws
                         ipAddress = Context.Request.UserHostAddress.Replace(".", "").Replace(":", "");
 
                 if (ipSecurity != ipAddress && ipAddress != "1" && ipAddress != "127001")
-                    throw new SoapException("Ip is invalid. Your IP: " + ipAddress + " and Ip Security: " + ipSecurity, SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("Ip is invalid. Your IP: " + ipAddress + " and Ip Security: " + ipSecurity,
+                        SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
 
                 int id;
                 if (!int.TryParse(clientIdOrUserId, out id))
-                    throw new SoapException("Client or User is invalid", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("Client or User is invalid", SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
 
                 if (authHeader.SessionId != sessionId)
-                    throw new SoapException("SessionId is invalid", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                    throw new SoapException("SessionId is invalid", SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
 
-                if (DateTime.Now.AddMinutes(-1) > DateTime.ParseExact(date, "yyyyMMddHHmmss", CultureInfo.InvariantCulture))
-                    throw new SoapException("Session expired", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+                if (DateTime.Now.AddMinutes(-1) >
+                    DateTime.ParseExact(date, "yyyyMMddHHmmss", CultureInfo.InvariantCulture))
+                    throw new SoapException("Session expired", SoapException.ClientFaultCode,
+                        Context.Request.Url.AbsoluteUri);
 
                 return id;
 
             }
             throw new SoapException("User is no logged", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
         }
+
         #endregion
 
         #region SetRatingCompany
+
         [WebMethod(Description = "Method to set a rating Company (Classificar a compania)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetRatingCompany(int id, int value, string comments)
@@ -916,9 +1017,11 @@ namespace Afonsoft.Petz.ws
             }
             return replay;
         }
+
         #endregion
 
         #region SetPetPicture
+
         [WebMethod(Description = "Method to set a rating Employees (Classificar o funcionário)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SetRatingEmployees(int id, int value, string comments)
@@ -952,9 +1055,11 @@ namespace Afonsoft.Petz.ws
                 return replay;
             }
         }
+
         #endregion
 
         #region GetCompanyRatingHistoric
+
         [WebMethod(Description = "Method to take a hitoric of Rating for Company (Recuperar a classificação)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public RatingHistoric[] GetCompanyRatingHistoric(int id)
@@ -963,9 +1068,11 @@ namespace Afonsoft.Petz.ws
             RatingController controller = new RatingController();
             return controller.GetCompanyRatingHistoric(id);
         }
+
         #endregion
 
         #region GetUserRatingHistoric
+
         [WebMethod(Description = "Method to take a hitoric of Rating for User (Recuperar a classificação)")]
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public RatingHistoric[] GetUserRatingHistoric(int id)
@@ -974,6 +1081,7 @@ namespace Afonsoft.Petz.ws
             RatingController controller = new RatingController();
             return controller.GetUserRatingHistoric(id);
         }
+
         #endregion
 
     }

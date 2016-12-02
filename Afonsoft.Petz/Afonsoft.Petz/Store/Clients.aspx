@@ -146,8 +146,6 @@
                 jQuery("#contextMenuGeral").find('ul > li').children().attr('data-title', title);
                 event.preventDefault();
             });
-
-
         }
 
         function ConfigFilter() {

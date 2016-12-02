@@ -72,6 +72,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -159,6 +160,7 @@
     <Content Include="Store\ClientDetail.aspx" />
     <Content Include="Store\Clients.aspx" />
     <Content Include="Store\index.aspx" />
+    <Content Include="Store\PetDetail.aspx" />
     <Content Include="Store\Pets.aspx" />
     <Content Include="Store\RatingDetail.aspx" />
     <Content Include="Store\Scheduling.aspx" />
@@ -410,6 +412,13 @@
     </Compile>
     <Compile Include="Store\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\PetDetail.aspx.cs">
+      <DependentUpon>PetDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\PetDetail.aspx.designer.cs">
+      <DependentUpon>PetDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Store\Pets.aspx.cs">
       <DependentUpon>Pets.aspx</DependentUpon>
