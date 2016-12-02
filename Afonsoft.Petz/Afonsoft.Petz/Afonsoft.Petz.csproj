@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{11DA991D-47DC-4248-B246-58BD16F4C5AC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Afonsoft.Petz</RootNamespace>
+    <AssemblyName>Afonsoft.Petz</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\index.aspx" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.min.css" />
+    <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\ie10-viewport-bug-workaround.css" />
+    <Content Include="Content\PetSystem.css" />
+    <Content Include="DataBase\DataBasePetz.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataBasePetz.edmx</DependentUpon>
+      <LastGenOutput>DataBasePetz.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataBase\DataBasePetz.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataBasePetz.edmx</DependentUpon>
+      <LastGenOutput>DataBasePetz.cs</LastGenOutput>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\fig-caoc.png" />
+    <Content Include="Images\gato3-01.png" />
+    <Content Include="Images\loader3.gif" />
+    <Content Include="Images\noPic.jpg" />
+    <Content Include="Images\pet-icon.png" />
+    <Content Include="Images\photo.png" />
+    <Content Include="Images\Preloader_2.gif" />
+    <Content Include="Images\slider01_background.jpg" />
+    <Content Include="Images\slider02_background.jpg" />
+    <Content Include="Images\slider04_background.jpg" />
+    <Content Include="Images\slider06_background.jpg" />
+    <Content Include="Images\slider07_background.jpg" />
+    <Content Include="login.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery.Starrr.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Tools.js" />
+    <Content Include="Scripts\bootstrap-notify.js" />
+    <Content Include="Scripts\calendar\fullcalendar.min.js" />
+    <Content Include="Scripts\calendar\gcal.js" />
+    <Content Include="Scripts\calendar\pt-br.js" />
+    <Content Include="Store\CalenderDetail.aspx" />
+    <Content Include="Store\ClientDetail.aspx" />
+    <Content Include="Store\Clients.aspx" />
+    <Content Include="Store\index.aspx" />
+    <Content Include="Store\Pets.aspx" />
+    <Content Include="Store\RatingDetail.aspx" />
+    <Content Include="Store\Scheduling.aspx" />
+    <Content Include="Store\Settings.aspx" />
+    <Content Include="Content\sidebar.css" />
+    <Content Include="Store\UserDetail.aspx" />
+    <Content Include="ws\Service.asmx" />
+    <EntityDeploy Include="DataBase\DataBasePetz.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataBasePetz.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataBase\DataBasePetz.edmx.diagram">
+      <DependentUpon>DataBasePetz.edmx</DependentUpon>
+    </Content>
+    <Content Include="Images\network.jpg" />
+    <Content Include="Images\prod.jpg" />
+    <Content Include="Images\ssl.jpg" />
+    <Content Include="index.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Client.master.cs">
+      <DependentUpon>Client.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Client.master.designer.cs">
+      <DependentUpon>Client.master</DependentUpon>
+    </Compile>
+    <Compile Include="Client\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\ClientsController.cs" />
+    <Compile Include="Controller\CompaniesController.cs" />
+    <Compile Include="Controller\PetsController.cs" />
+    <Compile Include="Controller\RatingController.cs" />
+    <Compile Include="Controller\SchedulingController.cs" />
+    <Compile Include="Controller\ServiceController.cs" />
+    <Compile Include="Controller\SpeciesController.cs" />
+    <Compile Include="Controller\StatesController.cs" />
+    <Compile Include="Controller\SecurityController.cs" />
+    <Compile Include="Controller\StatusController.cs" />
+    <Compile Include="Controller\UsersController.cs" />
+    <Compile Include="DataBase\DataBasePetz.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBasePetz.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\DataBasePetz.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\DataBasePetz.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBasePetz.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Address.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Breed.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Clients.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Client_Address.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Client_Company.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Client_Pet.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Client_Phone.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Companies.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Company_Address.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Company_Phone.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Company_Service.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Company_Status_Color.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Company_webcam.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Countries.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Employees.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Pets.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Pet_Historic.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Pet_Scheduling.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Pet_Vaccination.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Pet_Vaccination_Scheduling.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Rating.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Roles.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Role_Groups.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Role_Groups_Roles.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Service.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Size.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Species.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_States.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Status.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Sub_Species.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Users.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\petz_Users_Role_Groups.cs">
+      <DependentUpon>DataBasePetz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Library\CacheHelper.cs" />
+    <Compile Include="Library\CompressorHelper.cs" />
+    <Compile Include="Library\Cryptographic.cs" />
+    <Compile Include="Library\DateTimeExtensions.cs" />
+    <Compile Include="Library\ImageHelper.cs" />
+    <Compile Include="Library\StringExtensions.cs" />
+    <Compile Include="Library\ExceptionExtensions.cs" />
+    <Compile Include="Library\Utf8StringWriter.cs" />
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AddressEntity.cs" />
+    <Compile Include="Model\BreedEntity.cs" />
+    <Compile Include="Model\ClientsEntity.cs" />
+    <Compile Include="Model\CompaniesEntity.cs" />
+    <Compile Include="Model\CountriesEntity.cs" />
+    <Compile Include="Model\EmployeesEntity.cs" />
+    <Compile Include="Model\EventObject.cs" />
+    <Compile Include="Model\ImageEntity.cs" />
+    <Compile Include="Model\ItemEntity.cs" />
+    <Compile Include="Model\PetsEntity.cs" />
+    <Compile Include="Model\PhoneEntity.cs" />
+    <Compile Include="Model\RatingEntity.cs" />
+    <Compile Include="Model\SchedulingEntity.cs" />
+    <Compile Include="Model\SecurityEntity.cs" />
+    <Compile Include="Model\ServiceEntity.cs" />
+    <Compile Include="Model\SizeEntity.cs" />
+    <Compile Include="Model\SpeciesEntity.cs" />
+    <Compile Include="Model\StatesEntity.cs" />
+    <Compile Include="Model\StatusEntity.cs" />
+    <Compile Include="Model\SubSpeciesEntity.cs" />
+    <Compile Include="Model\UsersEntity.cs" />
+    <Compile Include="Model\VaccinationEntity.cs" />
+    <Compile Include="PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\PageBaseSecurity.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Petz.Master.cs">
+      <DependentUpon>Petz.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Petz.Master.designer.cs">
+      <DependentUpon>Petz.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Store\CalenderDetail.aspx.cs">
+      <DependentUpon>CalenderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\CalenderDetail.aspx.designer.cs">
+      <DependentUpon>CalenderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\ClientDetail.aspx.cs">
+      <DependentUpon>ClientDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\ClientDetail.aspx.designer.cs">
+      <DependentUpon>ClientDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Clients.aspx.cs">
+      <DependentUpon>Clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\Clients.aspx.designer.cs">
+      <DependentUpon>Clients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Pets.aspx.cs">
+      <DependentUpon>Pets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\Pets.aspx.designer.cs">
+      <DependentUpon>Pets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\RatingDetail.aspx.cs">
+      <DependentUpon>RatingDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\RatingDetail.aspx.designer.cs">
+      <DependentUpon>RatingDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Scheduling.aspx.cs">
+      <DependentUpon>Scheduling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\Scheduling.aspx.designer.cs">
+      <DependentUpon>Scheduling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Store.master.cs">
+      <DependentUpon>Store.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\Store.master.designer.cs">
+      <DependentUpon>Store.master</DependentUpon>
+    </Compile>
+    <Compile Include="Store\StoreScript.Master.cs">
+      <DependentUpon>StoreScript.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\StoreScript.Master.designer.cs">
+      <DependentUpon>StoreScript.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Store\UserDetail.aspx.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Store\UserDetail.aspx.designer.cs">
+      <DependentUpon>UserDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ws\Service.asmx.cs">
+      <DependentUpon>Service.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Petz.Master" />
+    <Content Include="Client\Client.master" />
+    <Content Include="ImageHandler.ashx" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\publicar.pubxml" />
+    <Content Include="Store\Store.master" />
+    <Content Include="Scripts\jquery.filterTable.js" />
+    <Content Include="Store\StoreScript.Master" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6922</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5557/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55c68f3cdb3a451da13cb13c6ca8c6ab" Name="Diagram1" ZoomLevel="50">
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Address" Width="1.5" PointX="7.5" PointY="52.625" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Breed" Width="1.5" PointX="8" PointY="45.625" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Client_Address" Width="1.5" PointX="9.75" PointY="61.125" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Client_Company" Width="1.5" PointX="5.25" PointY="52.5" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Client_Pet" Width="1.5" PointX="14.75" PointY="61" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Client_Phone" Width="1.5" PointX="5.25" PointY="69.75" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Clients" Width="1.5" PointX="3" PointY="63.875" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Companies" Width="1.5" PointX="3" PointY="35.5" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_Address" Width="1.5" PointX="12.75" PointY="42.875" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_Phone" Width="1.5" PointX="12.75" PointY="45.875" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_Service" Width="1.5" PointX="5.25" PointY="33.25" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_Status_Color" Width="1.5" PointX="5.25" PointY="47.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_webcam" Width="1.5" PointX="5.25" PointY="44.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Countries" Width="1.5" PointX="3" PointY="31.875" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Employees" Width="1.5" PointX="8.25" PointY="40.875" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Pet_Historic" Width="1.5" PointX="14.75" PointY="49.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Pet_Scheduling" Width="1.5" PointX="20" PointY="51.125" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Pet_Vaccination" Width="1.5" PointX="17.75" PointY="59.125" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Pet_Vaccination_Scheduling" Width="1.5" PointX="17.75" PointY="54.125" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Pets" Width="1.5" PointX="12.5" PointY="52.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Rating" Width="1.5" PointX="14.75" PointY="54.5" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Role_Groups" Width="1.5" PointX="3" PointY="72.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Role_Groups_Roles" Width="1.5" PointX="5.25" PointY="60.5" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Roles" Width="1.5" PointX="3" PointY="45.5" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Service" Width="1.5" PointX="3" PointY="28" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Size" Width="1.5" PointX="10.25" PointY="55.25" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Species" Width="1.5" PointX="3" PointY="49.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_States" Width="1.5" PointX="5.25" PointY="39.25" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Status" Width="1.5" PointX="3" PointY="59.375" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Sub_Species" Width="1.5" PointX="10.25" PointY="45.625" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Users" Width="1.5" PointX="0.75" PointY="40.625" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Users_Role_Groups" Width="1.5" PointX="5.25" PointY="57.125" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Address_petz_Clients_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Address_petz_Clients_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Address_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Address_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Address_state" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_Address_petz_Address" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Address_petz_Address" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Phone_Address" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Breed_petz_Sub_Species" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Breed_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Breed_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Breed" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_Address_petz_Clients" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_Company_Client" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_petz_Companies" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_petz_Clients" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_petz_Pets" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Client_Phone_Client" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Clients_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Clients" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Clients_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Clients_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_petz_Clients_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_petz_Clients_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_Scheduling_petz_Clients_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_Scheduling_petz_Clients_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Clients" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Clients_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_Client_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_Client_rating" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Companies_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Companies_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Address_petz_Companies" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Phone_Companies" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Service_Company_id" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Status_Color_petz_company" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_webcam_Companies" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Employees_petz_Companies" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_company_rating" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_Company_Address" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Service_service_id" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Status_Color_petz_status_id" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Status_Color_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Status_Color_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Countries_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Countries_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_States_petz_Countries" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Employees_petz_Users" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Employees_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Employees_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Historic_petz_Employees" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Employees" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Historic_petz_Pets" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Historic_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Historic_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Pets" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Status" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Scheduling_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_petz_Pets" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_Scheduling_petz_Pets" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_Scheduling_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pet_Vaccination_Scheduling_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Size" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Sub_Species" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Pets_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_pet_rating" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Rating_petz_Users_rating" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Role_Groups_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Role_Groups_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Role_Groups_Roles_petz_Role_Groups" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Users_Role_Groups_petz_Role_Groups" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Role_Groups_Roles_petz_Roles" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Roles_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Roles_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Service_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Service_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Species_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Species_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Sub_Species_petz_Species" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_States_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_States_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Status_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Status_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Sub_Species_petz_Users_insert" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Sub_Species_petz_Users_update" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Users_Role_Groups_petz_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

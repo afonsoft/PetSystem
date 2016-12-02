@@ -1,0 +1,5 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Petz.Master" AutoEventWireup="true" CodeBehind="Client.master.cs" Inherits="Afonsoft.Petz.API.Client.Client" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHead" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHeadMain" runat="server">
+</asp:Content>
