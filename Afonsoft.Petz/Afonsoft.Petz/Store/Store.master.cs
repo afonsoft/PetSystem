@@ -20,10 +20,7 @@ namespace Afonsoft.Petz.Store
         {
             get
             {
-                if (Session["UsuarioLogado"] == null)
-                    return null;
-                else
-                    return (UserEntity)Session["UsuarioLogado"];
+                return (UserEntity) Session["UsuarioLogado"];
             }
             set { Session["UsuarioLogado"] = value; }
         }

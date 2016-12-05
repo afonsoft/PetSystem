@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
+﻿using System.IO;
 using Zip = ICSharpCode.SharpZipLib.Zip.Compression;
 
 namespace Afonsoft.Petz.Library
@@ -22,12 +18,12 @@ namespace Afonsoft.Petz.Library
                 if (data == null)
                     return null;
 
-                using (MemoryStream memoryStream = new MemoryStream())
+                using (var memoryStream = new MemoryStream())
                 {
-                    using (Zip.Streams.DeflaterOutputStream ZipStream = new Zip.Streams.DeflaterOutputStream(memoryStream, new Zip.Deflater(Zip.Deflater.BEST_COMPRESSION), 131072))
+                    using (var zipStream = new Zip.Streams.DeflaterOutputStream(memoryStream, new Zip.Deflater(Zip.Deflater.BEST_COMPRESSION), 131072))
                     {
-                        ZipStream.Write(data, 0, data.Length);
-                        ZipStream.Close();
+                        zipStream.Write(data, 0, data.Length);
+                        zipStream.Close();
                     }
                     return memoryStream.ToArray();
                 }
@@ -48,21 +44,20 @@ namespace Afonsoft.Petz.Library
                 if (data == null)
                     return null;
 
-                using (Zip.Streams.InflaterInputStream ZipStream = new Zip.Streams.InflaterInputStream(new MemoryStream(data)))
+                using (var zipStream = new Zip.Streams.InflaterInputStream(new MemoryStream(data)))
                 {
-                    using (MemoryStream stream = new MemoryStream())
+                    using (var stream = new MemoryStream())
                     {
                         byte[] buffer = new byte[1024];
-                        int size;
                         while (true)
                         {
-                            size = ZipStream.Read(buffer, 0, buffer.Length);
+                            var size = zipStream.Read(buffer, 0, buffer.Length);
                             if (size > 0)
                                 stream.Write(buffer, 0, size);
                             else
                                 break;
                         }
-                        ZipStream.Close();
+                        zipStream.Close();
                         return stream.ToArray();
                     }
                 }

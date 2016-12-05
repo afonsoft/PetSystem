@@ -159,7 +159,12 @@ namespace Afonsoft.Petz
         /// </summary>
         public string FixString(string txt)
         {
-            return txt.Replace(Environment.NewLine, "<br/>").Replace("\n", "").Replace("\r", "").Replace("'","`");
+            return
+                txt.Replace(Environment.NewLine, "<br/>")
+                    .Replace("\n", "")
+                    .Replace("\r", "")
+                    .Replace("'", "`")
+                    .RemoveSpecialCharacters();
         }
     }
 }

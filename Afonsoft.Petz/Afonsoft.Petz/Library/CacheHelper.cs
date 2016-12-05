@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace Afonsoft.Petz.Library
@@ -21,6 +19,8 @@ namespace Afonsoft.Petz.Library
        /// <param name="key">Name of item</param>
         public static void Add<T>(string key, T o)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             if (Exists(key))
                 Clear(key);
 
@@ -40,9 +40,11 @@ namespace Afonsoft.Petz.Library
         /// <typeparam name="T">Type of cached item</typeparam>
         /// <param name="o">Item to be cached</param>
         /// <param name="key">Name of item</param>
-        /// <param name="TimeExpiration">Time to expiration</param>
-        public static void Add<T>(string key, T o, DateTime TimeExpiration)
+        /// <param name="timeExpiration">Time to expiration</param>
+        public static void Add<T>(string key, T o, DateTime timeExpiration)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             if (Exists(key))
                 Clear(key);
 
@@ -51,7 +53,7 @@ namespace Afonsoft.Petz.Library
             // at that time. Hence, the NoSlidingExpiration.
 
             if (HttpContext.Current != null)
-                HttpContext.Current.Cache.Insert(key, o, null, TimeExpiration.AddMinutes(5), System.Web.Caching.Cache.NoSlidingExpiration);
+                HttpContext.Current.Cache.Insert(key, o, null, timeExpiration.AddMinutes(5), System.Web.Caching.Cache.NoSlidingExpiration);
 
             if (HttpContext.Current != null && HttpContext.Current.Session != null)
                 HttpContext.Current.Session[key] = o;
@@ -64,6 +66,8 @@ namespace Afonsoft.Petz.Library
         /// <param name="key">Name of cached item</param>
         public static void Clear(string key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             if (HttpContext.Current != null)
             {
                 HttpContext.Current.Cache.Remove(key);
@@ -74,7 +78,7 @@ namespace Afonsoft.Petz.Library
 
 
         /// <summary>
-        /// Remove all item from cache
+        /// Remove all item from cache and Session
         /// </summary>
         public static void ClearAll()
         {
@@ -96,6 +100,7 @@ namespace Afonsoft.Petz.Library
         /// <returns></returns>
         public static bool Exists(string key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             bool exist = false;
             if (HttpContext.Current != null)
             {
@@ -117,6 +122,7 @@ namespace Afonsoft.Petz.Library
         /// <returns>Cached item as type</returns>
         public static bool Get<T>(string key, out T value)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             try
             {
                 if (!Exists(key))
@@ -127,7 +133,7 @@ namespace Afonsoft.Petz.Library
 
                 if (HttpContext.Current.Session != null && HttpContext.Current.Session[key] != null)
                     value = (T)HttpContext.Current.Session[key];
-                else if (System.Web.HttpContext.Current != null)
+                else if (HttpContext.Current != null)
                     value = (T)HttpContext.Current.Cache[key];
                 else
                 {

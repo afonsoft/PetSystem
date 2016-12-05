@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 
 namespace Afonsoft.Petz.Library
 {
@@ -17,6 +16,7 @@ namespace Afonsoft.Petz.Library
         /// <summary>
         /// ForEach by Day 
         /// </summary>
+        /// <param name="from">This date</param>
         /// <param name="thru">Data final</param>
         /// <returns>Next Date</returns>
         public static IEnumerable<DateTime> EachDay(this DateTime from, DateTime thru)
@@ -41,24 +41,24 @@ namespace Afonsoft.Petz.Library
         /// <returns>Array of Holiday</returns>
         public static DateTime[] Holidays(this DateTime from)
         {
-            List<DateTime> ArrayOfDate = new List<DateTime>();
-            int Year = from.Year;
-            ArrayOfDate.Add(DateTime.ParseExact("01/01/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("21/04/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("01/05/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("07/09/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("12/10/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("02/11/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("15/11/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            ArrayOfDate.Add(DateTime.ParseExact("25/12/" + Year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
-            DateTime EasterDay = CalculateEaster(Year);
-            ArrayOfDate.Add(EasterDay); //Domingo de Pascoa (Easter Day)
-            ArrayOfDate.Add(EasterDay.AddDays(-49));
-            ArrayOfDate.Add(EasterDay.AddDays(-48));
-            ArrayOfDate.Add(EasterDay.AddDays(-47)); //The Carnival falls always 47 days before the Easter. 
-            ArrayOfDate.Add(EasterDay.AddDays(-2));
-            ArrayOfDate.Add(EasterDay.AddDays(+60)); //The Corpus Christi falls always 60 days after the Easter.
-            return ArrayOfDate.ToArray();
+            List<DateTime> arrayOfDate = new List<DateTime>();
+            int year = from.Year;
+            arrayOfDate.Add(DateTime.ParseExact("01/01/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("21/04/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("01/05/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("07/09/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("12/10/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("02/11/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("15/11/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            arrayOfDate.Add(DateTime.ParseExact("25/12/" + year, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+            DateTime easterDay = CalculateEaster(year);
+            arrayOfDate.Add(easterDay); //Domingo de Pascoa (Easter Day)
+            arrayOfDate.Add(easterDay.AddDays(-49));
+            arrayOfDate.Add(easterDay.AddDays(-48));
+            arrayOfDate.Add(easterDay.AddDays(-47)); //The Carnival falls always 47 days before the Easter. 
+            arrayOfDate.Add(easterDay.AddDays(-2));
+            arrayOfDate.Add(easterDay.AddDays(+60)); //The Corpus Christi falls always 60 days after the Easter.
+            return arrayOfDate.ToArray();
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Afonsoft.Petz.Library
         /// FUNÇÃO PARA CALCULAR A DATA DO DOMINGO DE PASCOA
         /// http://www.inf.ufrgs.br/~cabral/Pascoa.html
         /// </summary>
-        /// <param name="AnoCalcular">ANO QUALQUER</param>
+        /// <param name="year">ANO QUALQUER</param>
         /// <returns>DateTime</returns>
         private static DateTime CalculateEaster(int year)
         {
@@ -178,7 +178,7 @@ namespace Afonsoft.Petz.Library
             else
             {
                 if (bankHolidays == null)
-                    bankHolidays = new DateTime[] { DateTime.MinValue };
+                    bankHolidays = new[] { DateTime.MinValue };
 
                 while (workingDays != -direction)
                 {
@@ -246,7 +246,7 @@ namespace Afonsoft.Petz.Library
             businessDays -= fullWeekCount + fullWeekCount;
 
             if (bankHolidays == null)
-                bankHolidays = new DateTime[] { DateTime.MinValue };
+                bankHolidays = new[] { DateTime.MinValue };
 
             // subtract the number of bank holidays during the time interval
             foreach (DateTime bankHoliday in bankHolidays)

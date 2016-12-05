@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
 namespace Afonsoft.Petz.Library
 {
@@ -15,24 +12,29 @@ namespace Afonsoft.Petz.Library
         /// <summary>
         /// Criptografar uma string utilizando o TripleDES
         /// </summary>
-        /// <param name="DecryptedMessage">String a ser criptografar</param>
+        /// <param name="decryptedMessage">String a ser criptografar</param>
         /// <returns>String Criptografar</returns>
-        public static String Encryptor(String DecryptedMessage)
+        public static string Encryptor(string decryptedMessage)
         {
-            return Encryptor(DecryptedMessage, "AbCdEfGh");
+            if (decryptedMessage == null) throw new ArgumentNullException(nameof(decryptedMessage));
+
+            return Encryptor(decryptedMessage, "AbCdEfGh");
         }
         /// <summary>
         /// Criptografar uma string
         /// </summary>
-        /// <param name="DecryptedMessage">String a ser criptografar</param>
+        /// <param name="decryptedMessage">String a ser criptografar</param>
         /// <param name="key">Chave usada para criptografar </param>
         /// <returns>String Criptografar</returns>
-        public static String Encryptor(String DecryptedMessage, String key)
+        public static string Encryptor(string decryptedMessage,string key)
         {
+            if (decryptedMessage == null) throw new ArgumentNullException(nameof(decryptedMessage));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             TripleDES tripleDes = TripleDES.Create();
             tripleDes.IV = Encoding.ASCII.GetBytes(key);
             tripleDes.Key = Encoding.ASCII.GetBytes("passwordDR0wSS@P6660juht");
-            byte[] data = Encoding.ASCII.GetBytes(DecryptedMessage);
+            byte[] data = Encoding.ASCII.GetBytes(decryptedMessage);
             byte[] enc = new byte[0];
             tripleDes.Mode = CipherMode.CBC;
             tripleDes.Padding = PaddingMode.Zeros;
@@ -45,40 +47,49 @@ namespace Afonsoft.Petz.Library
         /// <summary>
         /// Descriptografar uma string
         /// </summary>
-        /// <param name="EncryptedMessage">String Criptografado</param>
+        /// <param name="encryptedMessage">String Criptografado</param>
         /// <returns>String desriptografar</returns>
-        public static String Decryptor(String EncryptedMessage)
+        public static string Decryptor(string encryptedMessage)
         {
-            return Decryptor(EncryptedMessage, "AbCdEfGh");
+            if (encryptedMessage == null) throw new ArgumentNullException(nameof(encryptedMessage));
+
+            return Decryptor(encryptedMessage, "AbCdEfGh");
         }
         /// <summary>
         /// Descriptografar uma string
         /// </summary>
-        /// <param name="EncryptedMessage">String Criptografado</param>
+        /// <param name="encryptedMessage">String Criptografado</param>
         /// <param name="key">Chave usada para Descriptografar </param>
         /// <returns>String desriptografar</returns>
-        public static String Decryptor(String EncryptedMessage, String key)
+        public static string Decryptor(string encryptedMessage, string key)
         {
+            if (encryptedMessage == null) throw new ArgumentNullException(nameof(encryptedMessage));
+            if (key == null) throw new ArgumentNullException(nameof(key));
+
             TripleDES tripleDes = TripleDES.Create();
             tripleDes.IV = Encoding.ASCII.GetBytes(key);
             tripleDes.Key = Encoding.ASCII.GetBytes("passwordDR0wSS@P6660juht");
             tripleDes.Mode = CipherMode.CBC;
             tripleDes.Padding = PaddingMode.Zeros;
             ICryptoTransform crypto = tripleDes.CreateDecryptor();
-            byte[] decodedInput = StringToByteArray(EncryptedMessage);
+            byte[] decodedInput = StringToByteArray(encryptedMessage);
             byte[] decryptedBytes = crypto.TransformFinalBlock(decodedInput, 0, decodedInput.Length);
             return Encoding.ASCII.GetString(decryptedBytes);
         }
         private static byte[] StringToByteArray(string hex)
         {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
+            if (hex == null) throw new ArgumentNullException(nameof(hex));
+
+            int numberChars = hex.Length;
+            byte[] bytes = new byte[numberChars / 2];
+            for (int i = 0; i < numberChars; i += 2)
                 bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
             return bytes;
         }
         private static string ByteArrayToString(byte[] bin)
         {
+            if (bin == null) throw new ArgumentNullException(nameof(bin));
+
             string hex = BitConverter.ToString(bin);
             return hex.Replace("-", "");
         }

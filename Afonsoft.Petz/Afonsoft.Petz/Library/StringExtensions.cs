@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace Afonsoft.Petz.Library
 {
@@ -13,7 +12,7 @@ namespace Afonsoft.Petz.Library
         /// <summary>
         /// Returns an enumerable collection of the specified type containing the substrings in this instance that are delimited by elements of a specified Char array
         /// </summary>
-        /// <param name="str">The string.</param>
+        /// <param name="text">The string.</param>
         /// <param name="separator">
         /// An array of Unicode characters that delimit the substrings in this instance, an empty array containing no delimiters, or null.
         /// </param>
@@ -40,7 +39,7 @@ namespace Afonsoft.Petz.Library
             }
             else
             {
-                return string.Format(format, new object[] { arg }.Concat(additionalArgs).ToArray());
+                return string.Format(format, new[] { arg }.Concat(additionalArgs).ToArray());
             }
         }
 
@@ -63,7 +62,7 @@ namespace Afonsoft.Petz.Library
         public static bool IsNumeric(this string text)
         {
             long retNum;
-            return long.TryParse(text, System.Globalization.NumberStyles.Integer, System.Globalization.NumberFormatInfo.InvariantInfo, out retNum);
+            return long.TryParse(text, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out retNum);
         }
 
         /// <summary>

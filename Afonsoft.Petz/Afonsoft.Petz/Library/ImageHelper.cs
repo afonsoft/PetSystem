@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace Afonsoft.Petz.Library
 {
@@ -17,7 +14,7 @@ namespace Afonsoft.Petz.Library
         /// <summary>
         /// Converter os byte em Base64
         /// </summary>
-        public static string byteArrayToBase64(byte[] byteArrayIn)
+        public static string ByteArrayToBase64(byte[] byteArrayIn)
         {
             try
             {
@@ -51,6 +48,11 @@ namespace Afonsoft.Petz.Library
             }
         }
 
+        /// <summary>
+        /// Byte to Image
+        /// </summary>
+        /// <param name="imageBytes">Array of Byte</param>
+        /// <returns>Image</returns>
         public static Image ByteToImage(byte[] imageBytes)
         {
             Image image;
@@ -60,7 +62,12 @@ namespace Afonsoft.Petz.Library
             }
             return image;
         }
-
+        
+        /// <summary>
+        /// Base64 to Image
+        /// </summary>
+        /// <param name="base64String">String with base64</param>
+        /// <returns>Image</returns>
         public static Image Base64ToImage(string base64String)
         {
             Image image;
@@ -72,17 +79,17 @@ namespace Afonsoft.Petz.Library
             return image;
         }
 
-        public static Image DrawTextImage(String Text, Color textColor, Color backColor)
+        public static Image DrawTextImage(String text, Color textColor, Color backColor)
         {
-            Font font = new Font("Arial", 10, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            return DrawTextImage(Text, font, textColor, backColor, Size.Empty);
+            Font font = new Font("Arial", 10, FontStyle.Regular, GraphicsUnit.Pixel);
+            return DrawTextImage(text, font, textColor, backColor, Size.Empty);
         }
 
-        public static Image DrawTextImage(String Text, Font font, Color textColor, Color backColor)
+        public static Image DrawTextImage(String text, Font font, Color textColor, Color backColor)
         {
-            return DrawTextImage(Text, font, textColor, backColor, Size.Empty);
+            return DrawTextImage(text, font, textColor, backColor, Size.Empty);
         }
-        public static Image DrawTextImage(String Text, Font font, Color textColor, Color backColor, Size minSize)
+        public static Image DrawTextImage(String text, Font font, Color textColor, Color backColor, Size minSize)
         {
             //first, create a dummy bitmap just to get a graphics object
             SizeF textSize;
@@ -95,7 +102,7 @@ namespace Afonsoft.Petz.Library
                 using (Graphics drawing = Graphics.FromImage(img))
                 {
                     //measure the string to see how big the image needs to be
-                    textSize = drawing.MeasureString(Text, font);
+                    textSize = drawing.MeasureString(text, font);
                     if (!minSize.IsEmpty)
                     {
                         textSize.Width = textSize.Width > minSize.Width ? textSize.Width : minSize.Width;
@@ -116,7 +123,7 @@ namespace Afonsoft.Petz.Library
                 //create a brush for the text
                 using (Brush textBrush = new SolidBrush(textColor))
                 {
-                    drawing.DrawString(Text, font, textBrush, 0, 0);
+                    drawing.DrawString(text, font, textBrush, 0, 0);
                     drawing.Save();
                 }
             }
