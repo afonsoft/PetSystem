@@ -11,7 +11,7 @@ using Afonsoft.Petz.Model;
 
 namespace Afonsoft.Petz.ws
 {
-    [WebService(Namespace = "http://pet.afonsoft.com.br/")]
+    [WebService(Namespace = "http://webservice.afonsoft.com.br/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     [System.Web.Script.Services.ScriptService]
@@ -21,7 +21,7 @@ namespace Afonsoft.Petz.ws
                                    HttpContext.Current.Request.Url.Authority +
                                    HttpContext.Current.Request.ApplicationPath?.TrimEnd('/') + "/";
 
-        public AuthHeader AuthHeader = new AuthHeader();
+        public AuthHeader authHeader = new AuthHeader();
 
         #region Authenticate
 
@@ -29,16 +29,16 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.Out)]
         public ResponseMessage Authenticate(ClientCredentials clientCredentials)
         {
-            AuthHeader = new AuthHeader();
+            authHeader = new AuthHeader();
             ResponseMessage securityReply = new ResponseMessage();
 
-            AuthHeader.SecurityToken = "";
+            authHeader.SecurityToken = "";
             securityReply.Message = "";
 
             try
             {
                 SecurityController controller = new SecurityController();
-                AuthHeader.SessionId = controller.RandomString(8);
+                authHeader.SessionId = controller.RandomString(8);
 
                 if (clientCredentials == null)
                 {
@@ -74,8 +74,8 @@ namespace Afonsoft.Petz.ws
                 if (id > 0)
                 {
                     //SessionId|ID|yyyyMMddHHmmss|IpAddress|C
-                    AuthHeader.SecurityToken =
-                        Cryptographic.Encryptor(AuthHeader.SessionId + "|" + id + "|" +
+                    authHeader.SecurityToken =
+                        Cryptographic.Encryptor(authHeader.SessionId + "|" + id + "|" +
                                                 DateTime.Now.AddMinutes(20).ToString("yyyyMMddHHmmss") + "|" + ipAddress +
                                                 "|C");
                     securityReply.Message = "Authentication successfully";
@@ -109,11 +109,11 @@ namespace Afonsoft.Petz.ws
             ResponseMessage securityReply = new ResponseMessage();
             securityReply.Message = "User is no logged";
 
-            if (AuthHeader != null)
+            if (authHeader != null)
             {
-                AuthHeader = new AuthHeader();
-                AuthHeader.SessionId = "";
-                AuthHeader.SecurityToken = "";
+                authHeader = new AuthHeader();
+                authHeader.SessionId = "";
+                authHeader.SecurityToken = "";
                 securityReply.Success = true;
                 securityReply.Message = "SignOut successfully";
             }
@@ -130,7 +130,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public StatesEntity[] GetStates(int id)
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             StatesEntity[] states;
             StatesController controller = new StatesController();
             if (id < 0)
@@ -178,7 +178,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
 
                 if (newPassword1 != newPassword2)
                     throw new ArgumentOutOfRangeException(nameof(password), "New Password not match");
@@ -205,7 +205,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ClientEntity GetClientInformation()
         {
-            int id = ValidSecurityToken(AuthHeader);
+            int id = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetClient(id);
         }
@@ -221,7 +221,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
 
                 if (clientEntity == null)
@@ -252,7 +252,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetClientPicture()
         {
-            int id = ValidSecurityToken(AuthHeader);
+            int id = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             ImageEntity entity = new ImageEntity
             {
@@ -263,7 +263,7 @@ namespace Afonsoft.Petz.ws
             if (entity.Binary != null)
                 entity.Url =
                     HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=CLIENT&token=" +
-                                           AuthHeader.SecurityToken);
+                                           authHeader.SecurityToken);
             return entity;
         }
 
@@ -280,7 +280,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity), "Entity is null");
 
@@ -325,7 +325,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.SetClientPhone(id, phones);
                 replay.Success = true;
@@ -353,7 +353,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.DeleteClientPhone(id, phone);
                 replay.Success = true;
@@ -378,7 +378,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public AddressEntity[] GetClientAddress()
         {
-            int id = ValidSecurityToken(AuthHeader);
+            int id = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetClientAddress(id);
         }
@@ -394,7 +394,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 AddressController controller = new AddressController();
                 controller.SetClientAddress(addressEntity, id);
                 replay.Success = true;
@@ -418,7 +418,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public PetsEntity[] GetClientPets()
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetPetsClient(clientId);
         }
@@ -434,7 +434,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 if (petsEntity.ClientId == id)
                 {
@@ -466,7 +466,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public HistoricEntity[] GetPetHistoric(int petId)
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetPetHistoric(clientId, petId);
         }
@@ -479,7 +479,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public VaccinationEntity[] GetPetVaccination(int petId)
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetPetVaccination(clientId, petId);
         }
@@ -495,7 +495,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.DeletePetsClient(petsEntity, id);
                 replay.Success = true;
@@ -519,7 +519,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SpeciesEntity[] GetPetSpecies(String name = "")
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             SpeciesController controller = new SpeciesController();
             SpeciesEntity[] species;
 
@@ -544,7 +544,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SubSpeciesEntity[] GetPetSubSpecies(int? speciesId = 0, String name = "")
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             SpeciesController controller = new SpeciesController();
             SubSpeciesEntity[] subSpecies;
 
@@ -574,7 +574,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public BreedEntity[] GetPetBreed(int? subSpeciesId = 0, String name = "")
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             SpeciesController controller = new SpeciesController();
             BreedEntity[] breed;
 
@@ -603,7 +603,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SizeEntity[] GetPetSize(int? id = 0, String name = "")
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             PetsController controller = new PetsController();
             SizeEntity[] size;
 
@@ -632,7 +632,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompaniesEntity[] GetCompanies(int? id = 0, String name = "")
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             CompaniesController controller = new CompaniesController();
             CompaniesEntity[] companies;
             if (CacheHelper.Exists("GetCompanies") == false)
@@ -658,7 +658,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompaniesEntity[] GetFavoriteCompanies()
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             return controller.GetClientCompanies(clientId);
         }
@@ -674,7 +674,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.SetClientCompanies(clientId, conpanyId);
                 replay.Success = true;
@@ -701,7 +701,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.DeleteFavoriteCompanies(clientId, conpanyId);
                 replay.Success = true;
@@ -725,7 +725,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public SchedulingEntity[] GetScheduling()
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             SchedulingController controller = new SchedulingController();
             return controller.GetSchedulingClient(clientId);
         }
@@ -741,7 +741,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 ClientsController controller = new ClientsController();
                 controller.DeleteScheduling(clientId, schedulingId);
                 replay.Success = true;
@@ -769,7 +769,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 SchedulingController controller = new SchedulingController();
                 controller.SetConfirmShedulingByClient(schedulingId, clientId);
                 replay.Success = true;
@@ -795,7 +795,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 SchedulingController controller = new SchedulingController();
 
                 if (insertOrUpdate == null)
@@ -824,7 +824,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public CompanyCalenderEntity[] GetCalender(int companyId)
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             SchedulingController controller = new SchedulingController();
             return controller.GetCompanyCalender(companyId);
         }
@@ -837,7 +837,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetCompanyPicture(int id)
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             CompaniesController controller = new CompaniesController();
             ImageEntity entity = new ImageEntity
             {
@@ -848,7 +848,7 @@ namespace Afonsoft.Petz.ws
             if (entity.Binary != null)
                 entity.Url =
                     HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=COMPANY&token=" +
-                                           AuthHeader.SecurityToken);
+                                           authHeader.SecurityToken);
             return entity;
         }
 
@@ -861,7 +861,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ImageEntity GetPetPicture(int id)
         {
-            int clientId = ValidSecurityToken(AuthHeader);
+            int clientId = ValidSecurityToken(authHeader);
             ClientsController controller = new ClientsController();
             ImageEntity entity = new ImageEntity
             {
@@ -872,7 +872,7 @@ namespace Afonsoft.Petz.ws
             if (entity.Binary != null)
                 entity.Url =
                     HttpUtility.HtmlDecode(_baseUrl + "ImageHandler.ashx?ID=" + id + "&type=PET&token=" +
-                                           AuthHeader.SecurityToken);
+                                           authHeader.SecurityToken);
             return entity;
         }
 
@@ -888,7 +888,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int id = ValidSecurityToken(AuthHeader);
+                int id = ValidSecurityToken(authHeader);
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity), "Entity is null");
 
@@ -994,7 +994,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 bool isCompanyClient = new ClientsController().GetClientCompanies(clientId).Count(x => x.Id == id) > 0;
 
                 if (isCompanyClient)
@@ -1029,7 +1029,7 @@ namespace Afonsoft.Petz.ws
             ResponseMessage replay = new ResponseMessage();
             try
             {
-                int clientId = ValidSecurityToken(AuthHeader);
+                int clientId = ValidSecurityToken(authHeader);
                 var companies = new ClientsController().GetClientCompanies(clientId);
 
                 bool isCompanyClient = companies.Count(c => c.Employees.Any(e => e.Id == id)) > 0;
@@ -1064,7 +1064,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public RatingHistoric[] GetCompanyRatingHistoric(int id)
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             RatingController controller = new RatingController();
             return controller.GetCompanyRatingHistoric(id);
         }
@@ -1077,7 +1077,7 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public RatingHistoric[] GetUserRatingHistoric(int id)
         {
-            ValidSecurityToken(AuthHeader);
+            ValidSecurityToken(authHeader);
             RatingController controller = new RatingController();
             return controller.GetUserRatingHistoric(id);
         }
