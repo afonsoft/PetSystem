@@ -23,6 +23,12 @@ namespace Afonsoft.Petz.Controller
             if (String.IsNullOrEmpty(clientEntity.Name))
                 throw new ArgumentNullException(nameof(clientEntity.Name), "clientEntity.Name is null or invalid");
 
+            if (String.IsNullOrEmpty(clientEntity.Document))
+                throw new ArgumentNullException(nameof(clientEntity.Document), "clientEntity.Document is null or invalid");
+
+            if(!clientEntity.Document.IsCpf())
+                throw new ArgumentNullException(nameof(clientEntity.Document), "clientEntity.Document is not a valid CPF");
+
             var clientAlreadyExists = GetClient(clientEntity.Email);
 
             if (clientAlreadyExists == null)
@@ -32,7 +38,7 @@ namespace Afonsoft.Petz.Controller
                     petz_Clients client = new petz_Clients
                     {
                         client_birthday = clientEntity.Birthday,
-                        client_document = clientEntity.Document,
+                        client_document = clientEntity.Document.Replace(".","").Replace("-",""),
                         client_email = clientEntity.Email,
                         client_name = clientEntity.Name,
                         client_nickname = clientEntity.NickName,

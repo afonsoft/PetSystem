@@ -21,6 +21,7 @@ namespace Afonsoft.Petz.ws
                                    HttpContext.Current.Request.Url.Authority +
                                    HttpContext.Current.Request.ApplicationPath?.TrimEnd('/') + "/";
 
+        // ReSharper disable once InconsistentNaming
         public AuthHeader authHeader = new AuthHeader();
 
         #region Authenticate
@@ -106,14 +107,15 @@ namespace Afonsoft.Petz.ws
         [SoapHeader("authHeader", Direction = SoapHeaderDirection.In)]
         public ResponseMessage SignOut()
         {
-            ResponseMessage securityReply = new ResponseMessage();
-            securityReply.Message = "User is no logged";
+            ResponseMessage securityReply = new ResponseMessage {Message = "User is no logged"};
 
             if (authHeader != null)
             {
-                authHeader = new AuthHeader();
-                authHeader.SessionId = "";
-                authHeader.SecurityToken = "";
+                authHeader = new AuthHeader
+                {
+                    SessionId = "",
+                    SecurityToken = ""
+                };
                 securityReply.Success = true;
                 securityReply.Message = "SignOut successfully";
             }
@@ -926,6 +928,7 @@ namespace Afonsoft.Petz.ws
 
         #region ValidSecurityToken
 
+        // ReSharper disable once ParameterHidesMember
         private int ValidSecurityToken(AuthHeader authHeader)
         {
             if (authHeader != null)
