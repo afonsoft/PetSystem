@@ -216,6 +216,7 @@ namespace Afonsoft.Petz.Controller
                     select s.client_id)
                 .Distinct()
                 .ToArray();
+
             int[] idsByFavorite = db.petz_Client_Company
                 .Where(x => x.company_id == id
                             && x.client_id == (clientId <= 0 ? x.client_id : clientId))

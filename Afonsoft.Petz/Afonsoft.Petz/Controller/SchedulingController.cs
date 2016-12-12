@@ -137,9 +137,12 @@ namespace Afonsoft.Petz.Controller
                 }
                 else
                 {
-                    p = new petz_Pet_Scheduling();
-                    p.status_id = (int)StatusEnum.EventCreateByClient; //Evento Criado pelo Cliente 
-                    p.date_insert = DateTime.Now;
+                    p = new petz_Pet_Scheduling
+                    {
+                        status_id = (int) StatusEnum.EventCreateByClient,
+                        date_insert = DateTime.Now
+                    };
+                    //Evento Criado pelo Cliente 
                     if (insertOrUpdate.UserId.HasValue)
                         p.insert_user_id = insertOrUpdate.UserId.Value;
                     else
@@ -391,16 +394,18 @@ namespace Afonsoft.Petz.Controller
                 
                 foreach (var ps in petScheduling)
                 {
-                    SchedulingEntity entity = new SchedulingEntity();
-                    entity.Id = ps.scheduling_id;
-                    entity.Comments = ps.scheduling_comments;
-                    entity.DateStart = ps.scheduling_date_start;
-                    entity.DateEnd = ps.scheduling_date_end;
-                    entity.AddressId = ps.address_id;
-                    entity.Address = _addressController.GetAddress(ps.address_id);
-                    entity.Pet = _petController.GetPet(ps.pet_id);
-                    entity.Client = _clientController.GetClient(ps.client_id);
-                    entity.Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id);
+                    SchedulingEntity entity = new SchedulingEntity
+                    {
+                        Id = ps.scheduling_id,
+                        Comments = ps.scheduling_comments,
+                        DateStart = ps.scheduling_date_start,
+                        DateEnd = ps.scheduling_date_end,
+                        AddressId = ps.address_id,
+                        Address = _addressController.GetAddress(ps.address_id),
+                        Pet = _petController.GetPet(ps.pet_id),
+                        Client = _clientController.GetClient(ps.client_id),
+                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id)
+                    };
                     if (ps.service_id.HasValue)
                         entity.Service = _serviceController.GetService(ps.service_id.Value);
                     if (ps.employees_id.HasValue)

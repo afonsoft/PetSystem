@@ -219,11 +219,11 @@ namespace Afonsoft.Petz.Controller
                             Comments = x.rating_comments,
                             Date = x.date_insert.Value,
                             Id = x.rating_id,
-                            InsertByClientId = x.insert_client_id.HasValue ? x.insert_client_id.Value : 0,
-                            InsertByUserId = x.insert_user_id.HasValue ? x.insert_user_id.Value : 0,
-                            RatingClientId = x.rating_client_id.HasValue ? x.rating_client_id.Value : 0,
-                            RatingPetId = x.rating_pet_id.HasValue ? x.rating_pet_id.Value : 0,
-                            RatingUserId = x.rating_user_id.HasValue ? x.rating_user_id.Value : 0,
+                            InsertByClientId = x.insert_client_id ?? 0,
+                            InsertByUserId = x.insert_user_id ?? 0,
+                            RatingClientId = x.rating_client_id ?? 0,
+                            RatingPetId = x.rating_pet_id ?? 0,
+                            RatingUserId = x.rating_user_id ?? 0,
                             RatingValue = x.rating_value.Value
                         })
                         .OrderBy(x => x.Date)
@@ -245,11 +245,11 @@ namespace Afonsoft.Petz.Controller
                             Comments = x.rating_comments,
                             Date = x.date_insert.Value,
                             Id = x.rating_id,
-                            InsertByClientId = x.insert_client_id.HasValue ? x.insert_client_id.Value : 0,
-                            InsertByUserId = x.insert_user_id.HasValue ? x.insert_user_id.Value : 0,
-                            RatingClientId = x.rating_client_id.HasValue ? x.rating_client_id.Value : 0,
-                            RatingPetId = x.rating_pet_id.HasValue ? x.rating_pet_id.Value : 0,
-                            RatingUserId = x.rating_user_id.HasValue ? x.rating_user_id.Value : 0,
+                            InsertByClientId = x.insert_client_id ?? 0,
+                            InsertByUserId = x.insert_user_id ?? 0,
+                            RatingClientId = x.rating_client_id ?? 0,
+                            RatingPetId = x.rating_pet_id ?? 0,
+                            RatingUserId = x.rating_user_id ?? 0,
                             RatingValue = x.rating_value.Value
                         })
                         .OrderBy(x => x.Date)
@@ -271,11 +271,11 @@ namespace Afonsoft.Petz.Controller
                             Comments = x.rating_comments,
                             Date = x.date_insert.Value,
                             Id = x.rating_id,
-                            InsertByClientId = x.insert_client_id.HasValue ? x.insert_client_id.Value : 0,
-                            InsertByUserId = x.insert_user_id.HasValue ? x.insert_user_id.Value : 0,
-                            RatingClientId = x.rating_client_id.HasValue ? x.rating_client_id.Value : 0,
-                            RatingPetId = x.rating_pet_id.HasValue ? x.rating_pet_id.Value : 0,
-                            RatingUserId = x.rating_user_id.HasValue ? x.rating_user_id.Value : 0,
+                            InsertByClientId = x.insert_client_id ?? 0,
+                            InsertByUserId = x.insert_user_id ?? 0,
+                            RatingClientId = x.rating_client_id ?? 0,
+                            RatingPetId = x.rating_pet_id ?? 0,
+                            RatingUserId = x.rating_user_id ?? 0,
                             RatingValue = x.rating_value.Value
                         })
                         .OrderBy(x => x.Date)
@@ -297,11 +297,11 @@ namespace Afonsoft.Petz.Controller
                             Comments = x.rating_comments,
                             Date = x.date_insert.Value,
                             Id = x.rating_id,
-                            InsertByClientId = x.insert_client_id.HasValue ? x.insert_client_id.Value : 0,
-                            InsertByUserId = x.insert_user_id.HasValue ? x.insert_user_id.Value : 0,
-                            RatingClientId = x.rating_client_id.HasValue ? x.rating_client_id.Value : 0,
-                            RatingPetId = x.rating_pet_id.HasValue ? x.rating_pet_id.Value : 0,
-                            RatingUserId = x.rating_user_id.HasValue ? x.rating_user_id.Value : 0,
+                            InsertByClientId = x.insert_client_id ?? 0,
+                            InsertByUserId = x.insert_user_id ?? 0,
+                            RatingClientId = x.rating_client_id ?? 0,
+                            RatingPetId = x.rating_pet_id ?? 0,
+                            RatingUserId = x.rating_user_id ?? 0,
                             RatingValue = x.rating_value.Value
                         })
                         .OrderBy(x=>x.Date)
@@ -314,9 +314,8 @@ namespace Afonsoft.Petz.Controller
             try
             {
                 var itens = GetClientRating(id);
-                double total = itens.Count();
                 double value = itens.Select(x => x.RatingValue).Sum();
-                return value / total;
+                return value / itens.Length;
             }
             catch
             {
@@ -329,9 +328,8 @@ namespace Afonsoft.Petz.Controller
             try
             {
                 var itens = GetUserRating(id);
-                double total = itens.Count();
                 double value = itens.Select(x => x.RatingValue).Sum();
-                return value / total;
+                return value / itens.Length;
             }
             catch
             {
@@ -344,9 +342,8 @@ namespace Afonsoft.Petz.Controller
             try
             {
                 var itens = GetCompanyRating(id);
-                double total = itens.Count();
                 double value = itens.Select(x => x.RatingValue).Sum();
-                return value / total;
+                return value / itens.Length; 
             }
             catch
             {
@@ -359,9 +356,8 @@ namespace Afonsoft.Petz.Controller
             try
             {
                 var itens = GetPetRating(id);
-                double total = itens.Count();
                 double value = itens.Select(x => x.RatingValue).Sum();
-                return value / total;
+                return value / itens.Length;
             }
             catch
             {

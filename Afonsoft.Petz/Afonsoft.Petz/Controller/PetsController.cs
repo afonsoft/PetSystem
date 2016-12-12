@@ -79,7 +79,7 @@ namespace Afonsoft.Petz.Controller
                                 }
                             },
                             Breed = db.petz_Breed
-                                        .Where(b => b.breed_id == (p.breed_id == null ? 0 : p.breed_id))
+                                        .Where(b => b.breed_id == (p.breed_id ?? 0))
                                         .Select(b => new BreedEntity()
                                         {
                                             Id = b.breed_id,
@@ -96,7 +96,7 @@ namespace Afonsoft.Petz.Controller
                                                 }
                                             }
                                         }).FirstOrDefault(),
-                            Rating = (p.pet_rating.HasValue ? p.pet_rating.Value : 0)
+                            Rating = p.pet_rating ?? 0
                         }).FirstOrDefault();
             }
         }

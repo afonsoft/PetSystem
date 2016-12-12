@@ -29,14 +29,16 @@ namespace Afonsoft.Petz.Controller
             {
                 using (Petz_dbEntities db = new Petz_dbEntities())
                 {
-                    petz_Clients client = new petz_Clients();
+                    petz_Clients client = new petz_Clients
+                    {
+                        client_birthday = clientEntity.Birthday,
+                        client_document = clientEntity.Document,
+                        client_email = clientEntity.Email,
+                        client_name = clientEntity.Name,
+                        client_nickname = clientEntity.NickName,
+                        client_password = password
+                    };
 
-                    client.client_birthday = clientEntity.Birthday;
-                    client.client_document = clientEntity.Document;
-                    client.client_email = clientEntity.Email;
-                    client.client_name = clientEntity.Name;
-                    client.client_nickname = clientEntity.NickName;
-                    client.client_password = password;
 
                     if (clientEntity.Sex == EnumSex.Female)
                         client.client_sex = "F";
@@ -54,9 +56,11 @@ namespace Afonsoft.Petz.Controller
                     {
                         foreach (var phone in clientEntity.Phones)
                         {
-                            petz_Client_Phone p = new petz_Client_Phone();
-                            p.client_phone = phone.Phone;
-                            p.client_id = client.client_id;
+                            petz_Client_Phone p = new petz_Client_Phone
+                            {
+                                client_phone = phone.Phone,
+                                client_id = client.client_id
+                            };
                             db.petz_Client_Phone.Add(p);
                             db.SaveChanges();
                         }
@@ -66,22 +70,26 @@ namespace Afonsoft.Petz.Controller
                     {
                         foreach (var address in clientEntity.Address)
                         {
-                            petz_Address a = new petz_Address();
-                            a.address_complement = address.Complement;
-                            a.address_latitude = address.Latitude;
-                            a.address_longitude = address.Longitude;
-                            a.address_name = address.Name;
-                            a.address_nickname = "";
-                            a.address_number = address.Number;
-                            a.address_zip = address.ZipCode;
-                            a.date_insert = DateTime.Now;
-                            a.insert_client_id = client.client_id;
-                            a.state_id = address.State.Id;
+                            petz_Address a = new petz_Address
+                            {
+                                address_complement = address.Complement,
+                                address_latitude = address.Latitude,
+                                address_longitude = address.Longitude,
+                                address_name = address.Name,
+                                address_nickname = "",
+                                address_number = address.Number,
+                                address_zip = address.ZipCode,
+                                date_insert = DateTime.Now,
+                                insert_client_id = client.client_id,
+                                state_id = address.State.Id
+                            };
                             db.petz_Address.Add(a);
 
-                            petz_Client_Address p = new petz_Client_Address();
-                            p.address_id = a.address_id;
-                            p.client_id = client.client_id;
+                            petz_Client_Address p = new petz_Client_Address
+                            {
+                                address_id = a.address_id,
+                                client_id = client.client_id
+                            };
                             db.petz_Client_Address.Add(p);
                             db.SaveChanges();
                         }
@@ -167,7 +175,7 @@ namespace Afonsoft.Petz.Controller
                                 NickName = x.client_nickname,
                                 Birthday = x.client_birthday,
                                 Sex = (x.client_sex == null ? EnumSex.Other : (x.client_sex == "F" ? EnumSex.Female : EnumSex.Male)),
-                                Rating = (x.client_rating.HasValue ? x.client_rating.Value : 0)
+                                Rating = x.client_rating ?? 0
                             }).FirstOrDefault();
             }
 
@@ -196,7 +204,7 @@ namespace Afonsoft.Petz.Controller
                                 NickName = x.client_nickname,
                                 Birthday = x.client_birthday,
                                 Sex = (x.client_sex == null ? EnumSex.Other : (x.client_sex == "F" ? EnumSex.Female : EnumSex.Male)),
-                                Rating = (x.client_rating.HasValue ? x.client_rating.Value : 0)
+                                Rating = x.client_rating ?? 0
                             }).FirstOrDefault();
             }
             if (client != null)
@@ -271,22 +279,26 @@ namespace Afonsoft.Petz.Controller
                         petz_Address a;
                         if (address.Id <= 0)
                         {
-                            a = new petz_Address();
-                            a.address_complement = address.Complement;
-                            a.address_latitude = address.Latitude;
-                            a.address_longitude = address.Longitude;
-                            a.address_name = address.Name;
-                            a.address_nickname = "";
-                            a.address_number = address.Number;
-                            a.address_zip = address.ZipCode;
-                            a.date_insert = DateTime.Now;
-                            a.insert_client_id = clientEntity.Id;
-                            a.state_id = address.State.Id;
+                            a = new petz_Address
+                            {
+                                address_complement = address.Complement,
+                                address_latitude = address.Latitude,
+                                address_longitude = address.Longitude,
+                                address_name = address.Name,
+                                address_nickname = "",
+                                address_number = address.Number,
+                                address_zip = address.ZipCode,
+                                date_insert = DateTime.Now,
+                                insert_client_id = clientEntity.Id,
+                                state_id = address.State.Id
+                            };
                             db.petz_Address.Add(a);
 
-                            petz_Client_Address p = new petz_Client_Address();
-                            p.address_id = a.address_id;
-                            p.client_id = clientEntity.Id;
+                            petz_Client_Address p = new petz_Client_Address
+                            {
+                                address_id = a.address_id,
+                                client_id = clientEntity.Id
+                            };
                             db.petz_Client_Address.Add(p);
                             db.SaveChanges();
                         }else
@@ -636,7 +648,7 @@ namespace Afonsoft.Petz.Controller
                                 }
                             },
                             Breed = db.petz_Breed
-                                        .Where(b => b.breed_id == (p.breed_id == null ? 0 : p.breed_id))
+                                        .Where(b => b.breed_id == (p.breed_id ?? 0))
                                         .Select(b => new BreedEntity()
                                         {
                                             Id = b.breed_id,

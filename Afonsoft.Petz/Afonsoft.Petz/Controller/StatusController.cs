@@ -140,10 +140,12 @@ namespace Afonsoft.Petz.Controller
                 var upd = db.petz_Company_Status_Color.FirstOrDefault(x => x.company_id == companyId && x.status_id == statusEntity.Id && x.date_delete == null);
                 if (upd == null)
                 {
-                    upd = new petz_Company_Status_Color();
-                    upd.status_background_color = statusEntity.BackgroundColor;
-                    upd.status_border_color = statusEntity.BorderColor;
-                    upd.status_text_color = statusEntity.TextColor;
+                    upd = new petz_Company_Status_Color
+                    {
+                        status_background_color = statusEntity.BackgroundColor,
+                        status_border_color = statusEntity.BorderColor,
+                        status_text_color = statusEntity.TextColor
+                    };
                     db.petz_Company_Status_Color.Add(upd);
                 }
                 else
