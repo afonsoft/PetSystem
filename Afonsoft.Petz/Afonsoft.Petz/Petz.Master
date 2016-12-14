@@ -10,16 +10,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="content-language" content="pt-br" />
-    <meta name="robots" content="follow, all" />
-
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
-    <meta name="description" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, peixe, calendario" />
-    <meta name="author" content="Afonso Dutra Nogueira Filho" />
-    <meta name="copyright" content="AFONSOFT 2016" />
+    <meta name="language" content="pt-br" />
+    <meta name="resource-type" content="document" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="robots" content="index,follow" />
+    <meta name="revisit-after" content="1" />
+    <meta name="distribution" content="Global" />
     <meta name="rating" content="General" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="PetSystem - Sistema de agendamento de serviços de petshop" />
+    <meta name="keywords" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, calendario, Mamíferos, Aves, Répteis, Anfíbios, Peixes, Invertebrados"/>
+    <meta name="author" content="Afonso Dutra Nogueira Filho" />
+    <meta name="copyright" content="AFONSOFT 2017" />
     <meta name="geo.placename" content="São Paulo-SP" />
     <meta name="geo.region" content="SP-BR" />
     <link rel="made" href="mailto:afonso.nogueira@outlook.com.br" />
+    <meta name="reply-to" content="afonso.nogueira@outlook.com.br">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="apple-touch-icon" href="Images/pet-icon.png">
     <link rel="android-touch-icon" href="Images/pet-icon.png" />
     <link rel="icon" href="http://pet.afonsoft.com.br/Images/pet-icon.png">
@@ -31,7 +38,8 @@
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Pet System" />
     <meta property="og:title" content="Pet System - Gerenciamento de Pet" />
-    <meta property="og:description" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, peixe, calendario" />
+    <meta property="og:description" content="PetSystem - Sistema de agendamento de serviços de petshop" />
+    <meta property="og:keywords" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, calendario, Mamíferos, Aves, Répteis, Anfíbios, Peixes, Invertebrados" />
 
     <link href="Content/fullcalendar.print.css" rel="stylesheet" media='print' />
     <link href="Content/fullcalendar.min.css" rel="stylesheet" />
