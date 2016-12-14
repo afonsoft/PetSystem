@@ -35,8 +35,8 @@ namespace Afonsoft.Petz
             {
                 Path = "~/Scripts/moment-with-locales.min.js",
                 DebugPath = "~/Scripts/moment-with-locales.js",
-                CdnPath = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.min.js",
-                CdnDebugPath = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment-with-locales.js",
+                CdnPath = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js",
+                CdnDebugPath = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.js",
                 CdnSupportsSecureConnection = true,
                 LoadSuccessExpression = "window.Moment"
             });

@@ -22,7 +22,7 @@ namespace Afonsoft.Petz
             context.Response.ClearHeaders();
             context.Response.ClearContent();
             context.Response.Clear();
-            context.Response.ContentType = "image/jpg";
+            context.Response.ContentType = "text/calendar";
             try
             {
                 string typeOfImage = context.Request.QueryString["type"];

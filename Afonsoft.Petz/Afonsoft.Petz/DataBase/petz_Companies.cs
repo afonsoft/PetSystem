@@ -25,6 +25,7 @@ namespace Afonsoft.Petz.DataBase
             this.petz_Company_webcam = new HashSet<petz_Company_webcam>();
             this.petz_Employees = new HashSet<petz_Employees>();
             this.petz_Rating = new HashSet<petz_Rating>();
+            this.petz_Company_Work = new HashSet<petz_Company_Work>();
         }
     
         public int company_id { get; set; }
@@ -37,6 +38,7 @@ namespace Afonsoft.Petz.DataBase
         public System.DateTime date_insert { get; set; }
         public Nullable<System.DateTime> date_update { get; set; }
         public Nullable<System.DateTime> date_delete { get; set; }
+        public string company_email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<petz_Client_Company> petz_Client_Company { get; set; }
@@ -56,5 +58,7 @@ namespace Afonsoft.Petz.DataBase
         public virtual ICollection<petz_Employees> petz_Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<petz_Rating> petz_Rating { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<petz_Company_Work> petz_Company_Work { get; set; }
     }
 }

@@ -10,12 +10,14 @@ namespace Afonsoft.Petz.Model
         public string Name { get; set; }
         public string NickName { get; set; }
         public string Comments { get; set; }
+        public string Email { get; set; }
         public double Rating { get; set; }
         public AddressEntity[] Address { get; set; }
         public ServiceEntity[] Service { get; set; }
         public EmployeesEntity[] Employees { get; set; }
         public PhoneEntity[] Phones { get; set; }
         public WebCamEntity[] WebCam { get; set; }
+        public WorkEntity[] WorkDay { get; set; }
 
         public override string ToString()
         {

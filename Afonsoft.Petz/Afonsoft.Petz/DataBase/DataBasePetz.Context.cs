@@ -57,6 +57,6 @@ namespace Afonsoft.Petz.DataBase
         public virtual DbSet<petz_Sub_Species> petz_Sub_Species { get; set; }
         public virtual DbSet<petz_Users> petz_Users { get; set; }
         public virtual DbSet<petz_Users_Role_Groups> petz_Users_Role_Groups { get; set; }
-    
+        public virtual DbSet<petz_Company_Work> petz_Company_Work { get; set; }
     }
 }

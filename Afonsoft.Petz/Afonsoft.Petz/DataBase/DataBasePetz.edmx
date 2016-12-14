@@ -104,6 +104,7 @@
           <Property Name="company_nickname" Type="nvarchar" MaxLength="100" />
           <Property Name="company_comments" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="company_picture" Type="varbinary(max)" />
+          <Property Name="company_email" Type="nvarchar" MaxLength="2000" />
           <Property Name="insert_user_id" Type="int" Nullable="false" />
           <Property Name="update_user_id" Type="int" />
           <Property Name="date_insert" Type="datetime" Nullable="false" />
@@ -159,6 +160,17 @@
           <Property Name="company_id" Type="int" Nullable="false" />
           <Property Name="webcam_url" Type="nvarchar(max)" Nullable="false" />
           <Property Name="webcam_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="petz_Company_Work">
+          <Key>
+            <PropertyRef Name="work_id" />
+          </Key>
+          <Property Name="work_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_id" Type="int" Nullable="false" />
+          <Property Name="work_start_time_min" Type="int" Nullable="false" />
+          <Property Name="work_end_time_min" Type="int" Nullable="false" />
+          <Property Name="work_week" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="work_week_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="petz_Countries">
           <Key>
@@ -775,6 +787,18 @@
               <PropertyRef Name="company_id" />
             </Principal>
             <Dependent Role="petz_Company_webcam">
+              <PropertyRef Name="company_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_petz_Company_Work_petz_Companies">
+          <End Role="petz_Companies" Type="Self.petz_Companies" Multiplicity="1" />
+          <End Role="petz_Company_Work" Type="Self.petz_Company_Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="petz_Companies">
+              <PropertyRef Name="company_id" />
+            </Principal>
+            <Dependent Role="petz_Company_Work">
               <PropertyRef Name="company_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -1537,6 +1561,7 @@
           <EntitySet Name="petz_Company_Service" EntityType="Self.petz_Company_Service" Schema="afonsoftcombr" store:Type="Tables" />
           <EntitySet Name="petz_Company_Status_Color" EntityType="Self.petz_Company_Status_Color" Schema="afonsoftcombr" store:Type="Tables" />
           <EntitySet Name="petz_Company_webcam" EntityType="Self.petz_Company_webcam" Schema="afonsoftcombr" store:Type="Tables" />
+          <EntitySet Name="petz_Company_Work" EntityType="Self.petz_Company_Work" Schema="afonsoftcombr" store:Type="Tables" />
           <EntitySet Name="petz_Countries" EntityType="Self.petz_Countries" Schema="afonsoftcombr" store:Type="Tables" />
           <EntitySet Name="petz_Employees" EntityType="Self.petz_Employees" Schema="afonsoftcombr" store:Type="Tables" />
           <EntitySet Name="petz_Pet_Historic" EntityType="Self.petz_Pet_Historic" Schema="afonsoftcombr" store:Type="Tables" />
@@ -1671,6 +1696,10 @@
           <AssociationSet Name="FK_petz_Company_webcam_Companies" Association="Self.FK_petz_Company_webcam_Companies">
             <End Role="petz_Companies" EntitySet="petz_Companies" />
             <End Role="petz_Company_webcam" EntitySet="petz_Company_webcam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_petz_Company_Work_petz_Companies" Association="Self.FK_petz_Company_Work_petz_Companies">
+            <End Role="petz_Companies" EntitySet="petz_Companies" />
+            <End Role="petz_Company_Work" EntitySet="petz_Company_Work" />
           </AssociationSet>
           <AssociationSet Name="FK_petz_Countries_petz_Users_insert" Association="Self.FK_petz_Countries_petz_Users_insert">
             <End Role="petz_Users" EntitySet="petz_Users" />
@@ -2322,6 +2351,11 @@
             <End Role="petz_Users" EntitySet="petz_Users" />
             <End Role="petz_Users_Role_Groups" EntitySet="petz_Users_Role_Groups" />
           </AssociationSet>
+          <EntitySet Name="petz_Company_Work" EntityType="afonsoftcombr_dbModel.petz_Company_Work" />
+          <AssociationSet Name="FK_petz_Company_Work_petz_Companies" Association="afonsoftcombr_dbModel.FK_petz_Company_Work_petz_Companies">
+            <End Role="petz_Companies" EntitySet="petz_Companies" />
+            <End Role="petz_Company_Work" EntitySet="petz_Company_Work" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="petz_Address">
           <Key>
@@ -2474,6 +2508,8 @@
           <NavigationProperty Name="petz_Company_webcam" Relationship="afonsoftcombr_dbModel.FK_petz_Company_webcam_Companies" FromRole="petz_Companies" ToRole="petz_Company_webcam" />
           <NavigationProperty Name="petz_Employees" Relationship="afonsoftcombr_dbModel.FK_petz_Employees_petz_Companies" FromRole="petz_Companies" ToRole="petz_Employees" />
           <NavigationProperty Name="petz_Rating" Relationship="afonsoftcombr_dbModel.FK_petz_Rating_petz_company_rating" FromRole="petz_Companies" ToRole="petz_Rating" />
+          <Property Name="company_email" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="petz_Company_Work" Relationship="afonsoftcombr_dbModel.FK_petz_Company_Work_petz_Companies" FromRole="petz_Companies" ToRole="petz_Company_Work" />
         </EntityType>
         <EntityType Name="petz_Company_Address">
           <Key>
@@ -4023,6 +4059,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="petz_Company_Work">
+          <Key>
+            <PropertyRef Name="work_id" />
+          </Key>
+          <Property Name="work_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_id" Type="Int32" Nullable="false" />
+          <Property Name="work_start_time_min" Type="Int32" Nullable="false" />
+          <Property Name="work_end_time_min" Type="Int32" Nullable="false" />
+          <Property Name="work_week" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="work_week_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="petz_Companies" Relationship="afonsoftcombr_dbModel.FK_petz_Company_Work_petz_Companies" FromRole="petz_Company_Work" ToRole="petz_Companies" />
+        </EntityType>
+        <Association Name="FK_petz_Company_Work_petz_Companies">
+          <End Type="afonsoftcombr_dbModel.petz_Companies" Role="petz_Companies" Multiplicity="1" />
+          <End Type="afonsoftcombr_dbModel.petz_Company_Work" Role="petz_Company_Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="petz_Companies">
+              <PropertyRef Name="company_id" />
+            </Principal>
+            <Dependent Role="petz_Company_Work">
+              <PropertyRef Name="company_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4129,6 +4189,7 @@
           <EntitySetMapping Name="petz_Companies">
             <EntityTypeMapping TypeName="afonsoftcombr_dbModel.petz_Companies">
               <MappingFragment StoreEntitySet="petz_Companies">
+                <ScalarProperty Name="company_email" ColumnName="company_email" />
                 <ScalarProperty Name="date_delete" ColumnName="date_delete" />
                 <ScalarProperty Name="date_update" ColumnName="date_update" />
                 <ScalarProperty Name="date_insert" ColumnName="date_insert" />
@@ -4484,6 +4545,18 @@
                 <ScalarProperty Name="users_role_group_id" ColumnName="users_role_group_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="role_group_id" ColumnName="role_group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="petz_Company_Work">
+            <EntityTypeMapping TypeName="afonsoftcombr_dbModel.petz_Company_Work">
+              <MappingFragment StoreEntitySet="petz_Company_Work">
+                <ScalarProperty Name="work_week_id" ColumnName="work_week_id" />
+                <ScalarProperty Name="work_week" ColumnName="work_week" />
+                <ScalarProperty Name="work_end_time_min" ColumnName="work_end_time_min" />
+                <ScalarProperty Name="work_start_time_min" ColumnName="work_start_time_min" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="work_id" ColumnName="work_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

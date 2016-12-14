@@ -297,7 +297,8 @@ namespace Afonsoft.Petz.Controller
                         Address = _addressController.GetAddress(ps.address_id),
                         Pet = _petController.GetPet(ps.pet_id),
                         Client = _clientController.GetClient(ps.client_id),
-                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id)
+                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id),
+                        Company = _companyController.GetCompany(ps.company_id)
                     };
 
 
@@ -351,7 +352,8 @@ namespace Afonsoft.Petz.Controller
                         Address = _addressController.GetAddress(ps.address_id),
                         Pet = _petController.GetPet(ps.pet_id),
                         Client = _clientController.GetClient(ps.client_id),
-                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id)
+                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id),
+                        Company = _companyController.GetCompany(ps.company_id)
                     };
 
 
@@ -404,7 +406,8 @@ namespace Afonsoft.Petz.Controller
                         Address = _addressController.GetAddress(ps.address_id),
                         Pet = _petController.GetPet(ps.pet_id),
                         Client = _clientController.GetClient(ps.client_id),
-                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id)
+                        Status = _statusController.GetStatusCompany(ps.company_id, ps.status_id),
+                        Company = _companyController.GetCompany(ps.company_id)
                     };
                     if (ps.service_id.HasValue)
                         entity.Service = _serviceController.GetService(ps.service_id.Value);

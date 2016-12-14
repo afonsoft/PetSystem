@@ -128,6 +128,8 @@
         <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Sub_Species_petz_Users_insert" />
         <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Sub_Species_petz_Users_update" />
         <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Users_Role_Groups_petz_Users" />
+        <EntityTypeShape EntityType="afonsoftcombr_dbModel.petz_Company_Work" Width="1.5" PointX="5.25" PointY="30" />
+        <AssociationConnector Association="afonsoftcombr_dbModel.FK_petz_Company_Work_petz_Companies" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

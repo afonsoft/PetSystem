@@ -18,6 +18,7 @@ namespace Afonsoft.Petz.Model
         public ServiceEntity Service { get; set; }
         public AddressEntity Address { get; set; }
         public StatusEntity Status { get; set; }
+        public CompaniesEntity Company { get; set; }
 
         public override string ToString()
         {

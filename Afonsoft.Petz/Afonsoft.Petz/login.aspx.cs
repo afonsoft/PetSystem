@@ -23,7 +23,9 @@ namespace Afonsoft.Petz
                 //for test
                 loginname.Text = "admin";
                 password.Text = "Senha#12";
-                btnEntrar_Click(sender, e);
+                //btnEntrar_Click(sender, e);
+
+                Response.Redirect("iCalHandler.ashx?EventId=1&CompanyId=1");
 #endif
             }
         }

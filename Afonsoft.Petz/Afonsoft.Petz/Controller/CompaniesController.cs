@@ -26,7 +26,8 @@ namespace Afonsoft.Petz.Controller
                     Id = x.company_id,
                     Name = x.company_name,
                     Comments = x.company_comments,
-                    NickName = x.company_nickname
+                    NickName = x.company_nickname,
+                    Email = x.company_email
                 }).ToArray();
             RatingController rating = new RatingController();
             foreach (var c in companies)
@@ -36,7 +37,8 @@ namespace Afonsoft.Petz.Controller
                     Id = c.Id,
                     Name = c.Name,
                     Comments = c.Comments,
-                    NickName = c.NickName
+                    NickName = c.NickName,
+                    Email = c.Email
                 };
                 x.Address = GetCompanyAddress(x.Id);
                 x.Service = GetCompanyService(x.Id);
@@ -44,6 +46,7 @@ namespace Afonsoft.Petz.Controller
                 x.Phones = GetCompanyPhone(x.Id);
                 x.WebCam = GetCompanyWebCam(x.Id);
                 x.Rating = rating.GetCompanyRatingValue(x.Id);
+                x.WorkDay = GetCompanyWork(x.Id);
                 arrayOfCompany.Add(x);
             }
             if (!string.IsNullOrEmpty(name))
@@ -78,11 +81,10 @@ namespace Afonsoft.Petz.Controller
         public AddressEntity[] GetCompanyAddress(int id)
         {
             AddressController controller = new AddressController();
-            int[] address;
             List<AddressEntity> arrayEntity = new List<AddressEntity>();
 
             Petz_dbEntities db = new Petz_dbEntities();
-            address = db.petz_Company_Address
+            var address = db.petz_Company_Address
                 .Where(x => x.company_id == id)
                 .Select(x => x.address_id).ToArray();
 
@@ -90,6 +92,22 @@ namespace Afonsoft.Petz.Controller
                 arrayEntity.Add(controller.GetAddress(a));
 
             return arrayEntity.ToArray();
+        }
+
+        public WorkEntity[] GetCompanyWork(int id)
+        {
+            Petz_dbEntities db = new Petz_dbEntities();
+            return
+                db.petz_Company_Work.Where(x => x.company_id == id)
+                    .Select(
+                        x =>
+                            new WorkEntity()
+                            {
+                                WeekId = x.work_id,
+                                StartTimeMin = x.work_start_time_min,
+                                EndTimeMin = x.work_end_time_min
+                            })
+                    .ToArray();
         }
 
         public ServiceEntity[] GetCompanyService(int id)
@@ -143,7 +161,7 @@ namespace Afonsoft.Petz.Controller
                     IsCompanyAdmin = employee.Admin,
                     Id = employee.Id,
                     CompanyId = employee.CompanyID,
-                    User = controller.GetUser((int) employee.UserID)
+                    User = controller.GetUser(employee.UserID)
                 });
             }
             return arrayEmployees.ToArray();
@@ -170,7 +188,7 @@ namespace Afonsoft.Petz.Controller
                     IsCompanyAdmin = employee.Admin,
                     Id = employee.Id,
                     CompanyId = employee.CompanyID,
-                    User = controller.GetUser((int) employee.UserID)
+                    User = controller.GetUser(employee.UserID)
                 };
             }
             else
