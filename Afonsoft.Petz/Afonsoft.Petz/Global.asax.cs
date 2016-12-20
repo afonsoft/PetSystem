@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web.UI;
 
 namespace Afonsoft.Petz
@@ -63,9 +64,9 @@ namespace Afonsoft.Petz
         protected void Application_Error(object sender, EventArgs e)
         {
             //// Get the exception object.
-            //Exception ex = Server.GetLastError();
-            //if (ex is ThreadAbortException)
-            //    return;
+            Exception ex = Server.GetLastError();
+            if (ex is ThreadAbortException)
+                return;
         }
 
         protected void Session_End(object sender, EventArgs e)
