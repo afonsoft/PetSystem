@@ -114,6 +114,15 @@ function NotifyAlert(title, message, type, icon, url) {
     });
 }
 
+function ModalAjax(title, url) {
+    AjaxHTML('myModalInfoHTML', url);
+    jQuery('#myModalLabelHTML').html(title);
+    jQuery('#modal-dialog').css({ width: "600px" });
+    jQuery('#myModalInfo').modal('show');
+    jQuery('#myModalInfo').data('bs.modal').handleUpdate();
+    jQuery("#myModalInfo").on("hidden.bs.modal", function() { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
+}
+
 // ReSharper disable once UnusedParameter
 function AjaxHTML(objId, url) {
     UpdateShow();

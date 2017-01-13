@@ -33,7 +33,7 @@ namespace Afonsoft.Petz.Store
                     var infoClient = ListClientEntities?.FirstOrDefault(x => x.Id == clientId);
                     if (infoClient != null)
                     {
-
+                        ModalAjax("Cliente - " + infoClient.Name, "/Store/ClientDetail.aspx?ID=" + clientId);
                     }
                 }
             }

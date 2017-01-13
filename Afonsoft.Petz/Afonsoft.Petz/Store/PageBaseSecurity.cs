@@ -3,6 +3,7 @@ using Afonsoft.Petz.Library;
 using Afonsoft.Petz.Model;
 using System;
 using System.Globalization;
+using System.Web.UI;
 
 namespace Afonsoft.Petz.Store
 {
@@ -167,5 +168,30 @@ namespace Afonsoft.Petz.Store
             }
         }
 
+        /// <summary>
+        /// Abrir uma modal com o Ajax
+        /// </summary>
+        /// <param name="title">Titulo do Modal</param>
+        /// <param name="url">Url do Modal</param>
+        public void ModalAjax(string title, string url)
+        {
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "ModalAjax","ModalAjax('" + title + "','" + FixSecurityUrl(url) + "');", true);
+        }
+
+        public string FixSecurityUrl(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return "";
+            if (url.IndexOf("?Token=", StringComparison.Ordinal) > 0 || url.IndexOf("&Token=", StringComparison.Ordinal) > 0)
+                return url;
+            if (url.IndexOf("?", StringComparison.Ordinal) < 0)
+                return url + "?Token=" + SecurityToken;
+            if (url.IndexOf("&", StringComparison.Ordinal) > 0)
+                return url + "&Token=" + SecurityToken;
+            if (url.IndexOf("?", StringComparison.Ordinal) > 0)
+                return url + "&Token=" + SecurityToken;
+            return url;
+        }
     }
 }

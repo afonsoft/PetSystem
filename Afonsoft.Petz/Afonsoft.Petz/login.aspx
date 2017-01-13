@@ -102,7 +102,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; AFONSOFT 2016</p>
+                    <p>Copyright &copy; AFONSOFT 2017</p>
                 </div>
             </div>
         </footer>

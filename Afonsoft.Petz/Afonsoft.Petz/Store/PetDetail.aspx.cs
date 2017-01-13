@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Afonsoft.Petz.Store
 {
-    public partial class PetDetail : System.Web.UI.Page
+    public partial class PetDetail : PageBaseSecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
