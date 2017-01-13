@@ -119,6 +119,7 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\ie10-viewport-bug-workaround.css" />
+    <Content Include="Content\maps\maps.css" />
     <Content Include="Content\PetSystem.css" />
     <Content Include="DataBase\DataBasePetz.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -145,6 +146,27 @@
     <Content Include="Images\slider06_background.jpg" />
     <Content Include="Images\slider07_background.jpg" />
     <Content Include="login.aspx" />
+    <Content Include="Markers\m1.png" />
+    <Content Include="Markers\m2.png" />
+    <Content Include="Markers\m3.png" />
+    <Content Include="Markers\m4.png" />
+    <Content Include="Markers\m5.png" />
+    <Content Include="Markers\marcador.png" />
+    <Content Include="Markers\Marker-Azure.png" />
+    <Content Include="Markers\Marker-Azure2.png" />
+    <Content Include="Markers\Marker-Ball-Azure.png" />
+    <Content Include="Markers\Marker-Ball-Chartreuse.png" />
+    <Content Include="Markers\Marker-Ball-Pink.png" />
+    <Content Include="Markers\Marker-Chartreuse.png" />
+    <Content Include="Markers\Marker-Chartreuse2.png" />
+    <Content Include="Markers\Marker-Drawing-Pin-Azure.png" />
+    <Content Include="Markers\Marker-Drawing-Pin-Chartreuse.png" />
+    <Content Include="Markers\Marker-Drawing-Pin-Pink.png" />
+    <Content Include="Markers\Marker-Pink.png" />
+    <Content Include="Markers\Marker-Pink2.png" />
+    <Content Include="Markers\Marker-Push-Pin-Azure.png" />
+    <Content Include="Markers\Marker-Push-Pin-Chartreuse.png" />
+    <Content Include="Markers\Marker-Push-Pin-Pink.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
@@ -164,6 +186,9 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery.Starrr.js" />
+    <Content Include="Scripts\maps\infobox.js" />
+    <Content Include="Scripts\maps\maps.js" />
+    <Content Include="Scripts\maps\markerclusterer.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />

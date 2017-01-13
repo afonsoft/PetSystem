@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 
 namespace Afonsoft.Petz.Model
@@ -20,6 +21,14 @@ namespace Afonsoft.Petz.Model
         public override string ToString()
         {
             return Address + ", " + Number + (State != null ? " - " + State.Abbreviation : "") + (!string.IsNullOrEmpty(ZipCode) ? " - CEP: " + ZipCode : "");
+        }
+
+        /// <summary>
+        /// Metodo para utlizar junto ao Google Maps
+        /// </summary>
+        public string Json()
+        {
+            return "{\"Id\": " + Id + ", \"Latitude\": " + Latitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Longitude\":" + Longitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Descricao\": \"" + ToString() + "\", \"title\": \"" + Name + "\", \"icon\": \"/Markers/marcador.png\" },";
         }
 
         #region IComparer Members

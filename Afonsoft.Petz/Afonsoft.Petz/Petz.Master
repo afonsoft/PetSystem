@@ -43,6 +43,7 @@
 
     <link href="Content/fullcalendar.print.css" rel="stylesheet" media='print' />
     <link href="Content/fullcalendar.min.css" rel="stylesheet" />
+    <link href="Content/maps/maps.css" rel="stylesheet" />
 
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
@@ -64,6 +65,7 @@
     </style>
     <asp:ContentPlaceHolder ID="ContentPlaceHead" runat="server">
     </asp:ContentPlaceHolder>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBc1eChxuREqgy-Zcj2fAhcDe6E3-Rt7yM"></script>
 </head>
 <body>
     <form id="form1" runat="server" enctype="multipart/form-data">
@@ -80,6 +82,8 @@
                 <asp:ScriptReference Path="~/Scripts/jquery.Starrr.js" />
                 <asp:ScriptReference Path="~/Scripts/Tools.js" />
                 <asp:ScriptReference Path="~/Scripts/ie10-viewport-bug-workaround.js" />
+                <asp:ScriptReference Path="~/Scripts/maps/infobox.js" />
+                <asp:ScriptReference Path="~/Scripts/maps/markerclusterer.js" />
             </Scripts>
         </asp:ScriptManager>
         <asp:ContentPlaceHolder ID="ContentPlaceHeadMain" runat="server">
