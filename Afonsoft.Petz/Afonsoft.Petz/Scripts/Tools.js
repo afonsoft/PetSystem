@@ -117,7 +117,7 @@ function NotifyAlert(title, message, type, icon, url) {
 function ModalAjax(title, url) {
     AjaxHTML('myModalInfoHTML', url);
     jQuery('#myModalLabelHTML').html(title);
-    jQuery('#modal-dialog').css({ width: "auto", "min-width": "600px", "max-width": "850px" });
+    jQuery('#modal-dialog').css({ width: "auto", "min-width": "700px", "max-width": "850px" });
     jQuery('#myModalInfo').modal('show');
     jQuery('#myModalInfo').data('bs.modal').handleUpdate();
     jQuery("#myModalInfo").on("hidden.bs.modal", function () { jQuery('body').css({ 'background-color': "#F1F3FA !important" }); });
