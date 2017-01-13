@@ -20,7 +20,8 @@ namespace Afonsoft.Petz.Model
 
         public override string ToString()
         {
-            return Address + ", " + Number + (State != null ? " - " + State.Abbreviation : "") + (!string.IsNullOrEmpty(ZipCode) ? " - CEP: " + ZipCode : "");
+            return Address + ", " + Number + (State != null ? " - " + State.Abbreviation : "") +
+                   (!string.IsNullOrEmpty(ZipCode) ? " - CEP: " + ZipCode : "");
         }
 
         /// <summary>
@@ -28,7 +29,11 @@ namespace Afonsoft.Petz.Model
         /// </summary>
         public string Json()
         {
-            return "{\"Id\": " + Id + ", \"Latitude\": " + Latitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Longitude\":" + Longitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Descricao\": \"" + ToString() + "\", \"title\": \"" + Name + "\", \"icon\": \"/Markers/marcador.png\" },";
+            return "{\"Id\": " + Id + ", \"Latitude\": " +
+                   Latitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Longitude\":" +
+                   Longitude.Value.ToString(CultureInfo.InvariantCulture).Replace(",", ".") + ", \"Descricao\": \"" +
+                   ToString() + "\", \"title\": \"" + (string.IsNullOrEmpty(Name) ? Address : Name) +
+                   "\", \"icon\": \"/Markers/marcador.png\" }";
         }
 
         #region IComparer Members

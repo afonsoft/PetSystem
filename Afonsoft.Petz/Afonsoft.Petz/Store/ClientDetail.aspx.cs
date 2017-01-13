@@ -36,8 +36,16 @@ namespace Afonsoft.Petz.Store
                     {
                         lTelefoneClient.Text = "Nenhum telefone";
                     }
-                    string json = "[" + string.Join(",", client.Address.Select(x => x.Json()).ToArray()) + "]";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SearchFilter", "carregarPontos(" + json + ");", true);
+                    if (client.Address.Length > 0)
+                    {
+                        lEnderecoClient.Text = string.Join("<br/>", client.Address.Select(x => x.ToString()).ToArray());
+                        string json = "[" + string.Join(",", client.Address.Select(x => x.Json()).ToArray()) + "]";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SearchFilter", "carregarPontos(" + json + ");", true);
+                    }
+                    else
+                    {
+                        lEnderecoClient.Text = "Nenhum endereço cadastrado.";
+                    }
                 }
             }
         }

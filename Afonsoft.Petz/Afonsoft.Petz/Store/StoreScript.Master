@@ -7,6 +7,9 @@
     <title>Modal</title>
     <link href="/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="/Content/maps/maps.css" rel="stylesheet" />
+
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBc1eChxuREqgy-Zcj2fAhcDe6E3-Rt7yM"></script>
     <script src="/Scripts/jquery-3.1.1.min.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>
     <script src="/Scripts/bootstrap-notify.js"></script>
@@ -14,6 +17,8 @@
     <script src="/Scripts/jquery.filterTable.js"></script>
     <script src="/Scripts/Tools.js"></script>
     <script src="/Scripts/jquery.Starrr.js"></script>
+    <script src="/Scripts/maps/infobox.js"></script>
+    <script src="/Scripts/maps/markerclusterer.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
