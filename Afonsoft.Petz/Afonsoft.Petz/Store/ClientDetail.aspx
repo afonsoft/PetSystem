@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Store/StoreScript.Master" Async="true" AutoEventWireup="true" CodeBehind="ClientDetail.aspx.cs" Inherits="Afonsoft.Petz.Store.ClientDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="row" style="font-size: 8pt;">
         <div class="col-md-12 col-sm-12">
             <div class="panel panel-info">
@@ -45,22 +43,21 @@
                     </div>
                 </div>
             </div>
-
             <div class="panel panel-info">
                 <div class="panel-heading">Endereço</div>
                 <div class="panel-body" style="font-size: 8pt;">
-                   <div class="row">
-                       <div class="col-md-12 col-sm-12">
-                           <asp:Literal ID="lEnderecoClient" runat="server"></asp:Literal>
-                       </div>
-                   </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <asp:Literal ID="lEnderecoClient" runat="server"></asp:Literal>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div id="map-container" class="map-container" style="width: 600px;">
                                 <div id="map" style="width: 593px; height: 400px"></div>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -112,6 +112,6 @@
     </div>
 
     <script>
-         $('.starrr').starrr({readOnly: true, rating: <%= ClientRating %>});
+        $('.starrr').starrr({readOnly: true, rating: <%= ClientRating %>});
     </script>
 </asp:Content>
