@@ -23,10 +23,10 @@ namespace Afonsoft.Petz.Library
                     using (var zipStream = new Zip.Streams.DeflaterOutputStream(memoryStream, new Zip.Deflater(Zip.Deflater.BEST_COMPRESSION), 131072))
                     {
                         zipStream.Write(data, 0, data.Length);
-                        zipStream.Close();
+                        data = memoryStream.ToArray();
                     }
-                    return memoryStream.ToArray();
                 }
+                return data;
             }
             catch
             {
@@ -57,10 +57,10 @@ namespace Afonsoft.Petz.Library
                             else
                                 break;
                         }
-                        zipStream.Close();
-                        return stream.ToArray();
+                        data = stream.ToArray();
                     }
                 }
+                return data;
             }
             catch
             {
