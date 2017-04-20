@@ -13,7 +13,7 @@ namespace Afonsoft.Petz.Model
         public string Document { get; set; }
         public string Facebook { get; set; }
         public double Rating { get; set; }
-        public EnumSex Sex { get; set; } = EnumSex.Other;
+        public EnumSex Sex { get; set; } //= EnumSex.Other;
         public DateTime? Birthday { get; set; }
         public PhoneEntity[] Phones { get; set; }
         public AddressEntity[] Address { get; set; }

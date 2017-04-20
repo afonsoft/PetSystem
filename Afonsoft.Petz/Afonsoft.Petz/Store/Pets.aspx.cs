@@ -17,7 +17,7 @@ namespace Afonsoft.Petz.Store
         protected void Page_Load(object sender, EventArgs e)
         {
             var store = (Store)(Page.Master);
-            store?.ChangeActiveMenu("pets");
+            store.ChangeActiveMenu("pets");
             if (UsuarioLogado == null)
                 return;
 
@@ -29,7 +29,7 @@ namespace Afonsoft.Petz.Store
                 if (Request.QueryString["ID"] != null)
                 {
                     int petId = Convert.ToInt32(Request.QueryString["ID"]);
-                    var infoPet = ListPetsEntities?.FirstOrDefault(x => x.Id == petId);
+                    var infoPet = ListPetsEntities.FirstOrDefault(x => x.Id == petId);
                     if (infoPet != null)
                     {
 

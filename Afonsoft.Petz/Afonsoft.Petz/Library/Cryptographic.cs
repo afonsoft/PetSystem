@@ -16,7 +16,7 @@ namespace Afonsoft.Petz.Library
         /// <returns>String Criptografar</returns>
         public static string Encryptor(string decryptedMessage)
         {
-            if (decryptedMessage == null) throw new ArgumentNullException(nameof(decryptedMessage));
+            if (decryptedMessage == null) throw new ArgumentNullException("decryptedMessage");
 
             return Encryptor(decryptedMessage, "AbCdEfGh");
         }
@@ -28,8 +28,8 @@ namespace Afonsoft.Petz.Library
         /// <returns>String Criptografar</returns>
         public static string Encryptor(string decryptedMessage,string key)
         {
-            if (decryptedMessage == null) throw new ArgumentNullException(nameof(decryptedMessage));
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (decryptedMessage == null) throw new ArgumentNullException("decryptedMessage");
+            if (key == null) throw new ArgumentNullException("key");
 
             TripleDES tripleDes = TripleDES.Create();
             tripleDes.IV = Encoding.ASCII.GetBytes(key);
@@ -51,7 +51,7 @@ namespace Afonsoft.Petz.Library
         /// <returns>String desriptografar</returns>
         public static string Decryptor(string encryptedMessage)
         {
-            if (encryptedMessage == null) throw new ArgumentNullException(nameof(encryptedMessage));
+            if (encryptedMessage == null) throw new ArgumentNullException("encryptedMessage");
 
             return Decryptor(encryptedMessage, "AbCdEfGh");
         }
@@ -63,8 +63,8 @@ namespace Afonsoft.Petz.Library
         /// <returns>String desriptografar</returns>
         public static string Decryptor(string encryptedMessage, string key)
         {
-            if (encryptedMessage == null) throw new ArgumentNullException(nameof(encryptedMessage));
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (encryptedMessage == null) throw new ArgumentNullException("encryptedMessage");
+            if (key == null) throw new ArgumentNullException("key");
 
             TripleDES tripleDes = TripleDES.Create();
             tripleDes.IV = Encoding.ASCII.GetBytes(key);
@@ -78,7 +78,7 @@ namespace Afonsoft.Petz.Library
         }
         private static byte[] StringToByteArray(string hex)
         {
-            if (hex == null) throw new ArgumentNullException(nameof(hex));
+            if (hex == null) throw new ArgumentNullException("hex");
 
             int numberChars = hex.Length;
             byte[] bytes = new byte[numberChars / 2];
@@ -88,7 +88,7 @@ namespace Afonsoft.Petz.Library
         }
         private static string ByteArrayToString(byte[] bin)
         {
-            if (bin == null) throw new ArgumentNullException(nameof(bin));
+            if (bin == null) throw new ArgumentNullException("bin");
 
             string hex = BitConverter.ToString(bin);
             return hex.Replace("-", "");

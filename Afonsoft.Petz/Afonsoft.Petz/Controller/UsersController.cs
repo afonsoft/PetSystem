@@ -14,7 +14,7 @@ namespace Afonsoft.Petz.Controller
         public UserEntity GetUser(String userName)
         {
             if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName), "UserName is null");
+                throw new ArgumentNullException("userName", "UserName is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -43,7 +43,7 @@ namespace Afonsoft.Petz.Controller
             {
                 var user = db.petz_Users.FirstOrDefault(x => x.user_id == id  && x.user_password == oldPwd);
                 if (user == null)
-                    throw new ArgumentOutOfRangeException(nameof(oldPwd), "Password inválido.");
+                    throw new ArgumentOutOfRangeException("oldPwd", "Password inválido.");
 
                 user.user_password = newPwd;
                 db.SaveChanges();
@@ -73,10 +73,10 @@ namespace Afonsoft.Petz.Controller
         public void SetUserPicture(int id, byte[] byteArrayImage)
         {
             if (byteArrayImage == null)
-                throw new ArgumentNullException(nameof(byteArrayImage), "byteArrayImage is null");
+                throw new ArgumentNullException("byteArrayImage", "byteArrayImage is null");
 
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -90,7 +90,7 @@ namespace Afonsoft.Petz.Controller
         public byte[] GetUserPicture(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {

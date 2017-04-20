@@ -90,6 +90,9 @@ namespace Afonsoft.Petz
             }
         }
 
-        public bool IsReusable => false;
+        public bool IsReusable
+        {
+            get { return false; }
+        }
     }
 }

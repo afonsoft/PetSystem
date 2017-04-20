@@ -44,13 +44,13 @@ namespace Afonsoft.Petz.Controller
         public void SetClientAddress(AddressEntity addressEntity, int clientId, int? userId = null)
         {
             if (addressEntity == null)
-                throw new ArgumentNullException(nameof(addressEntity), "addressEntity is null");
+                throw new ArgumentNullException("addressEntity", "addressEntity is null");
 
             if (addressEntity.State == null || addressEntity.State.Id <= 0)
-                throw new ArgumentNullException(nameof(addressEntity.State), "addressEntity.States is null");
+                throw new ArgumentNullException("addressEntity.State", "addressEntity.States is null");
 
             if (clientId == 0 && userId == null)
-                throw new ArgumentNullException(nameof(clientId), "clientId of User or Client is null");
+                throw new ArgumentNullException("clientId", "clientId of User or Client is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -116,11 +116,11 @@ namespace Afonsoft.Petz.Controller
                         }
                         else
                         {
-                            throw new ArgumentOutOfRangeException(nameof(addressEntity.Id), "This address is not of this client");
+                            throw new ArgumentOutOfRangeException("addressEntity.Id", "This address is not of this client");
                         }
                     }else
                     {
-                        throw new ArgumentOutOfRangeException(nameof(addressEntity.Id), "This address is not of this client");
+                        throw new ArgumentOutOfRangeException("addressEntity.Id", "This address is not of this client");
                     }
                 }
             }

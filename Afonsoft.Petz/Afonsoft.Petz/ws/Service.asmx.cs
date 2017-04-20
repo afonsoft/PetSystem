@@ -19,7 +19,7 @@ namespace Afonsoft.Petz.ws
     {
         readonly string _baseUrl = HttpContext.Current.Request.Url.Scheme + "://" +
                                    HttpContext.Current.Request.Url.Authority +
-                                   HttpContext.Current.Request.ApplicationPath?.TrimEnd('/') + "/";
+                                   HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + "/";
 
         // ReSharper disable once InconsistentNaming
         public AuthHeader authHeader = new AuthHeader();
@@ -183,7 +183,7 @@ namespace Afonsoft.Petz.ws
                 int id = ValidSecurityToken(authHeader);
 
                 if (newPassword1 != newPassword2)
-                    throw new ArgumentOutOfRangeException(nameof(password), "New Password not match");
+                    throw new ArgumentOutOfRangeException("password", "New Password not match");
 
                 ClientsController controller = new ClientsController();
                 controller.ChangePassword(password, newPassword1, id);
@@ -227,10 +227,10 @@ namespace Afonsoft.Petz.ws
                 ClientsController controller = new ClientsController();
 
                 if (clientEntity == null)
-                    throw new ArgumentNullException(nameof(clientEntity), "clientEntity is null");
+                    throw new ArgumentNullException("clientEntity", "clientEntity is null");
 
                 if (clientEntity.Id != id)
-                    throw new ArgumentNullException(nameof(clientEntity.Id), "clientEntity.ID is invalid");
+                    throw new ArgumentNullException("clientEntity.Id", "clientEntity.ID is invalid");
 
                 controller.SetClient(clientEntity);
                 replay.Success = true;
@@ -284,10 +284,10 @@ namespace Afonsoft.Petz.ws
             {
                 int id = ValidSecurityToken(authHeader);
                 if (entity == null)
-                    throw new ArgumentNullException(nameof(entity), "Entity is null");
+                    throw new ArgumentNullException("entity", "Entity is null");
 
                 if (entity.Binary == null || String.IsNullOrEmpty(entity.Url))
-                    throw new ArgumentNullException(nameof(entity.Url), "Entity.URL is null");
+                    throw new ArgumentNullException("entity.Url", "Entity.URL is null");
 
                 if (entity.Binary == null || !String.IsNullOrEmpty(entity.Url))
                 {
@@ -298,7 +298,7 @@ namespace Afonsoft.Petz.ws
                 }
 
                 if (entity.Binary == null)
-                    throw new ArgumentNullException(nameof(entity), "Entity.Binary is null");
+                    throw new ArgumentNullException("entity", "Entity.Binary is null");
 
                 ClientsController controller = new ClientsController();
                 controller.SetClientPicture(id, entity.Binary);
@@ -892,10 +892,10 @@ namespace Afonsoft.Petz.ws
             {
                 int id = ValidSecurityToken(authHeader);
                 if (entity == null)
-                    throw new ArgumentNullException(nameof(entity), "Entity is null");
+                    throw new ArgumentNullException("entity", "Entity is null");
 
                 if (entity.Binary == null || String.IsNullOrEmpty(entity.Url))
-                    throw new ArgumentNullException(nameof(entity.Url), "Entity.URL is null");
+                    throw new ArgumentNullException("entity.Url", "Entity.URL is null");
 
                 if (entity.Binary == null || !String.IsNullOrEmpty(entity.Url))
                 {
@@ -906,7 +906,7 @@ namespace Afonsoft.Petz.ws
                 }
 
                 if (entity.Binary == null)
-                    throw new ArgumentNullException(nameof(entity.Binary), "Entity.Binary is null");
+                    throw new ArgumentNullException("entity.Binary", "Entity.Binary is null");
 
                 ClientsController controller = new ClientsController();
                 controller.SetPetClientPicture(id, entity.Id, entity.Binary);

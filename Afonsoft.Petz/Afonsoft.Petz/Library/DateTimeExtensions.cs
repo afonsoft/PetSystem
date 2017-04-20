@@ -130,7 +130,7 @@ namespace Afonsoft.Petz.Library
                 dia = (d + e + 22);
                 mes = 3;
             }
-            return DateTime.Parse($"{year},{mes},{dia}");
+            return DateTime.Parse(string.Format("{0},{1},{2}", year, mes, dia));
         }
         #endregion
 

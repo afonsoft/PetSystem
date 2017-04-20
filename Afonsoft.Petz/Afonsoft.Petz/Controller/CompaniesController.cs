@@ -57,10 +57,10 @@ namespace Afonsoft.Petz.Controller
         public void SetCompanyPicture(int id, byte[] byteArrayImage)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             if (byteArrayImage == null)
-                throw new ArgumentNullException(nameof(byteArrayImage), "byteArrayImage is null");
+                throw new ArgumentNullException("byteArrayImage", "byteArrayImage is null");
 
             Petz_dbEntities db = new Petz_dbEntities();
             var client = db.petz_Companies.FirstOrDefault(x => x.company_id == id && x.date_delete == null);
@@ -72,7 +72,7 @@ namespace Afonsoft.Petz.Controller
         public byte[] GetCompanyPicture(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             Petz_dbEntities db = new Petz_dbEntities();
             return Compressor.Decompress(db.petz_Companies.Where(x => x.company_id == id && x.date_delete == null).Select(x => x.company_picture).FirstOrDefault());

@@ -8,7 +8,11 @@ namespace Afonsoft.Petz.Model
     public class WorkEntity
     {
         public int WeekId { get; set; }
-        public DayOfWeek Week => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), WeekId.ToString());
+        public DayOfWeek Week
+        {
+            get { return (DayOfWeek) Enum.Parse(typeof(DayOfWeek), WeekId.ToString()); }
+        }
+
         public int StartTimeMin { get; set; }
         public int EndTimeMin { get; set; }
         public string StartTime {

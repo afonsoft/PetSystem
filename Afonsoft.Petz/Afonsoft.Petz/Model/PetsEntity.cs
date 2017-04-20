@@ -16,7 +16,7 @@ namespace Afonsoft.Petz.Model
         public string Color { get; set; }
         public string Facebook { get; set; }
         public double Rating { get; set; }
-        public EnumSex Sex { get; set; } = EnumSex.Other;
+        public EnumSex Sex { get; set; } //= EnumSex.Other;
         public Double? Weight { get; set; }
         public DateTime? Birthday { get; set; }
         public SubSpeciesEntity SubSpecies { get; set; }
@@ -62,7 +62,9 @@ namespace Afonsoft.Petz.Model
 
         public override string ToString()
         {
-            return Date.ToString("dd/MM/yyyy") + " : " + (Employee?.User != null ? Employee.User.UserName : "Employee") + " - " + Comments;
+            return Date.ToString("dd/MM/yyyy") + " : " + (Employee != null && Employee.User != null
+                       ? Employee.User.UserName
+                       : "Employee") + " - " + Comments;
         }
 
         #region IComparer Members

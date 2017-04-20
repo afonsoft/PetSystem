@@ -18,10 +18,10 @@ namespace Afonsoft.Petz.Controller
         public int AuthenticateUser(String userName, String password)
         {
             if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName), "UserName is null");
+                throw new ArgumentNullException("userName", "UserName is null");
 
             if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password), "Password is null");
+                throw new ArgumentNullException("password", "Password is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -68,10 +68,10 @@ namespace Afonsoft.Petz.Controller
         public int AuthenticateClient(String email, String password)
         {
             if (string.IsNullOrEmpty(email))
-                throw new ArgumentNullException(nameof(email), "Email is null");
+                throw new ArgumentNullException("email", "Email is null");
 
             if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password), "Password is null");
+                throw new ArgumentNullException("password", "Password is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {

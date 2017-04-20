@@ -56,7 +56,10 @@ namespace Afonsoft.Petz
         /// Recupere o objeto CultureInfo do Brasil, para usar no Convert.ToDateTime
         /// </summary>
         // ReSharper disable once InconsistentNaming
-        public CultureInfo cultureInfo => _cultureInfo;
+        public CultureInfo cultureInfo
+        {
+            get { return _cultureInfo; }
+        }
 
         public int ClientOrUserId
         {

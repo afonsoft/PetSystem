@@ -87,26 +87,26 @@ namespace Afonsoft.Petz.Controller
         {
 
             if (insertOrUpdate == null)
-                throw new ArgumentNullException(nameof(insertOrUpdate), "InsertOrUpdate is null");
+                throw new ArgumentNullException("insertOrUpdate", "InsertOrUpdate is null");
 
             if (insertOrUpdate.ClientId <= 0)
-                throw new ArgumentNullException(nameof(insertOrUpdate.ClientId), "InsertOrUpdate.ClientId is null");
+                throw new ArgumentNullException("insertOrUpdate.ClientId", "InsertOrUpdate.ClientId is null");
 
             if (insertOrUpdate.PetId <= 0)
-                throw new ArgumentNullException(nameof(insertOrUpdate.PetId), "InsertOrUpdate.PetId is null");
+                throw new ArgumentNullException("insertOrUpdate.PetId", "InsertOrUpdate.PetId is null");
 
             if (insertOrUpdate.CompanyId <= 0)
-                throw new ArgumentNullException(nameof(insertOrUpdate.CompanyId), "InsertOrUpdate.CompanyId is null");
+                throw new ArgumentNullException("insertOrUpdate.CompanyId", "InsertOrUpdate.CompanyId is null");
 
             if (insertOrUpdate.AddressId <= 0)
-                throw new ArgumentNullException(nameof(insertOrUpdate.AddressId), "InsertOrUpdate.AddressId is null");
+                throw new ArgumentNullException("insertOrUpdate.AddressId", "InsertOrUpdate.AddressId is null");
 
 
             if (insertOrUpdate.DateStart > insertOrUpdate.DateEnd)
-                throw new ArgumentOutOfRangeException(nameof(insertOrUpdate.DateStart), "DateStart greater than DateEnd");
+                throw new ArgumentOutOfRangeException("insertOrUpdate.DateStart", "DateStart greater than DateEnd");
 
             if (insertOrUpdate.DateStart < DateTime.Now.AddMinutes(10))
-                throw new ArgumentOutOfRangeException(nameof(insertOrUpdate.DateStart), "DateStart greater than today's date");
+                throw new ArgumentOutOfRangeException("insertOrUpdate.DateStart", "DateStart greater than today's date");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -171,15 +171,15 @@ namespace Afonsoft.Petz.Controller
         public void SetConfirmShedulingByClient(int schedulingId, int clientId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (schedulingId <= 0)
-                throw new ArgumentNullException(nameof(schedulingId), "SchedulingID is null");
+                throw new ArgumentNullException("schedulingId", "SchedulingID is null");
 
             var schedulingClientUpd = GetSchedulingClient(clientId).FirstOrDefault(x => x.Id == schedulingId);
 
             if (schedulingClientUpd == null)
-                throw new ArgumentOutOfRangeException(nameof(schedulingId), schedulingId, "This schedule does not belong to you.");
+                throw new ArgumentOutOfRangeException("schedulingId", schedulingId, "This schedule does not belong to you.");
 
             if (schedulingClientUpd.Status.Id != (int)StatusEnum.EventChangedByCompany)
                 throw new OperationCanceledException("This schedule is not waiting for confirmation.");
@@ -195,15 +195,15 @@ namespace Afonsoft.Petz.Controller
         public void SetConfirmShedulingByCompany(int schedulingId, int company)
         {
             if (company <= 0)
-                throw new ArgumentNullException(nameof(company), "Company is null");
+                throw new ArgumentNullException("company", "Company is null");
 
             if (schedulingId <= 0)
-                throw new ArgumentNullException(nameof(schedulingId), "SchedulingID is null");
+                throw new ArgumentNullException("schedulingId", "SchedulingID is null");
 
             var schedulingClientUpd = GetSchedulingCompany(company).FirstOrDefault(x => x.Id == schedulingId);
 
             if (schedulingClientUpd == null)
-                throw new ArgumentOutOfRangeException(nameof(schedulingId), schedulingId, "This schedule does not belong to you.");
+                throw new ArgumentOutOfRangeException("schedulingId", schedulingId, "This schedule does not belong to you.");
 
             if (schedulingClientUpd.Status.Id != (int)StatusEnum.EventChangedByClient)
                 throw new OperationCanceledException("This schedule is not waiting for confirmation.");

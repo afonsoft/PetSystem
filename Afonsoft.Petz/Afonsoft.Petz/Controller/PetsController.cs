@@ -13,10 +13,10 @@ namespace Afonsoft.Petz.Controller
         public void SetPetPicture(int id, byte[] byteArrayImage)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             if (byteArrayImage == null)
-                throw new ArgumentNullException(nameof(byteArrayImage), "byteArrayImage is null");
+                throw new ArgumentNullException("byteArrayImage", "byteArrayImage is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -30,7 +30,7 @@ namespace Afonsoft.Petz.Controller
         public byte[] GetPetPicture(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -118,10 +118,10 @@ namespace Afonsoft.Petz.Controller
         public HistoricEntity[] GetPetHistoric(PetsEntity petsEntity)
         {
             if (petsEntity == null)
-                throw new ArgumentNullException(nameof(petsEntity), "petsEntity is null");
+                throw new ArgumentNullException("petsEntity", "petsEntity is null");
 
             if (petsEntity.Id <= 0)
-                throw new ArgumentNullException(nameof(petsEntity.Id), "petsEntity.ID is null");
+                throw new ArgumentNullException("petsEntity.Id", "petsEntity.ID is null");
 
             return GetPetHistoric(petsEntity.Id);
         }
@@ -129,7 +129,7 @@ namespace Afonsoft.Petz.Controller
         public HistoricEntity[] GetPetHistoric(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             var arrayOfHistoricEntity = new List<HistoricEntity>();
             CompaniesController companyController = new CompaniesController();
@@ -151,10 +151,10 @@ namespace Afonsoft.Petz.Controller
         public VaccinationEntity[] GetPetVaccination(PetsEntity petsEntity)
         {
             if (petsEntity == null)
-                throw new ArgumentNullException(nameof(petsEntity), "petsEntity is null");
+                throw new ArgumentNullException("petsEntity", "petsEntity is null");
 
             if (petsEntity.Id <= 0)
-                throw new ArgumentNullException(nameof(petsEntity.Id), "petsEntity.ID is null");
+                throw new ArgumentNullException("petsEntity.Id", "petsEntity.ID is null");
 
             return GetPetVaccination(petsEntity.Id);
         }
@@ -162,7 +162,7 @@ namespace Afonsoft.Petz.Controller
         public VaccinationEntity[] GetPetVaccination(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             List<VaccinationEntity> arrayOfVaccinationEntity = new List<VaccinationEntity>();
             using (Petz_dbEntities db = new Petz_dbEntities())

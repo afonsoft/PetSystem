@@ -9,7 +9,7 @@ namespace Afonsoft.Petz.Store
         protected void Page_Load(object sender, EventArgs e)
         {
             var store = (Store)(Page.Master);
-            store?.ChangeActiveMenu("settings");
+            store.ChangeActiveMenu("settings");
             if (UsuarioLogado == null)
                 return;
 

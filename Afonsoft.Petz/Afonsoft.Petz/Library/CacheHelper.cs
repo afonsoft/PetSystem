@@ -19,7 +19,7 @@ namespace Afonsoft.Petz.Library
        /// <param name="key">Name of item</param>
         public static void Add<T>(string key, T o)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null) throw new ArgumentNullException("key");
 
             if (Exists(key))
                 Clear(key);
@@ -43,7 +43,7 @@ namespace Afonsoft.Petz.Library
         /// <param name="timeExpiration">Time to expiration</param>
         public static void Add<T>(string key, T o, DateTime timeExpiration)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null) throw new ArgumentNullException("key");
 
             if (Exists(key))
                 Clear(key);
@@ -66,7 +66,7 @@ namespace Afonsoft.Petz.Library
         /// <param name="key">Name of cached item</param>
         public static void Clear(string key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null) throw new ArgumentNullException("key");
 
             if (HttpContext.Current != null)
             {
@@ -100,7 +100,7 @@ namespace Afonsoft.Petz.Library
         /// <returns></returns>
         public static bool Exists(string key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null) throw new ArgumentNullException("key");
             bool exist = false;
             if (HttpContext.Current != null)
             {
@@ -122,7 +122,7 @@ namespace Afonsoft.Petz.Library
         /// <returns>Cached item as type</returns>
         public static bool Get<T>(string key, out T value)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null) throw new ArgumentNullException("key");
             try
             {
                 if (!Exists(key))

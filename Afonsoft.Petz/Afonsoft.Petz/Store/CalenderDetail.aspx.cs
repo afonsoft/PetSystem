@@ -48,7 +48,7 @@ namespace Afonsoft.Petz.Store
                         lTamanhoPet.Text = scheduling.Pet.Size.ToString();
                         lCorPet.Text = scheduling.Pet.Color;
 
-                        ltRacaPet.Text = scheduling.Pet.Breed?.ToString() ?? scheduling.Pet.SubSpecies.ToString();
+                        ltRacaPet.Text = scheduling.Pet.Breed != null ? scheduling.Pet.Breed.ToString() : scheduling.Pet.SubSpecies.ToString();
 
                         ClientRating = Convert.ToInt16(scheduling.Client.Rating);
                     }

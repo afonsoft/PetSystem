@@ -123,12 +123,12 @@ namespace Afonsoft.Petz.Controller
         public void SetStatusCompany(int companyId, StatusEntity statusEntity)
         {
             if (companyId <= 0)
-                throw new ArgumentNullException(nameof(companyId), "CompanyID is null or invalid");
+                throw new ArgumentNullException("companyId", "CompanyID is null or invalid");
 
             if (statusEntity == null)
-                throw new ArgumentNullException(nameof(statusEntity), "statusEntity is null or invalid");
+                throw new ArgumentNullException("statusEntity", "statusEntity is null or invalid");
             if (statusEntity.Id <= 0)
-                throw new ArgumentNullException(nameof(statusEntity.Id), "statusEntity.ID is null or invalid");
+                throw new ArgumentNullException("statusEntity.Id", "statusEntity.ID is null or invalid");
 
             StatusEntity info = GetStatus(statusEntity.Id);
             statusEntity.BackgroundColor = (string.IsNullOrEmpty(statusEntity.BackgroundColor) ? info.BackgroundColor : statusEntity.BackgroundColor);
@@ -166,10 +166,10 @@ namespace Afonsoft.Petz.Controller
         public void SetStatusScheduling(int schedulingId, int statusId)
         {
             if (schedulingId <= 0)
-                throw new ArgumentNullException(nameof(schedulingId), "SchedulingID is null or invalid");
+                throw new ArgumentNullException("schedulingId", "SchedulingID is null or invalid");
 
             if (statusId <= 0 && statusId > 8)
-                throw new ArgumentOutOfRangeException(nameof(statusId), statusId, "Status out of range, min 1 and max 8");
+                throw new ArgumentOutOfRangeException("statusId", statusId, "Status out of range, min 1 and max 8");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {

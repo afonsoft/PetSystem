@@ -17,7 +17,7 @@ namespace Afonsoft.Petz.Store
         protected void Page_Load(object sender, EventArgs e)
         {
             var store = (Store) (Page.Master);
-            store?.ChangeActiveMenu("clients");
+            store.ChangeActiveMenu("clients");
 
             if (UsuarioLogado == null)
                 return;
@@ -30,7 +30,7 @@ namespace Afonsoft.Petz.Store
                 if (Request.QueryString["ID"] != null)
                 {
                     int clientId = Convert.ToInt32(Request.QueryString["ID"]);
-                    var infoClient = ListClientEntities?.FirstOrDefault(x => x.Id == clientId);
+                    var infoClient = ListClientEntities.FirstOrDefault(x => x.Id == clientId);
                     if (infoClient != null)
                     {
                         ModalAjax("Cliente - " + infoClient.Name, "/Store/ClientDetail.aspx?ID=" + clientId);

@@ -12,22 +12,22 @@ namespace Afonsoft.Petz.Controller
         public void CreateClient(ClientEntity clientEntity, string password)
         {
             if (clientEntity == null)
-                throw new ArgumentNullException(nameof(clientEntity), "clientEntity is null or invalid");
+                throw new ArgumentNullException("clientEntity", "clientEntity is null or invalid");
 
             if (String.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password), "Password is null or invalid");
+                throw new ArgumentNullException("password", "Password is null or invalid");
 
             if (String.IsNullOrEmpty(clientEntity.Email))
-                throw new ArgumentNullException(nameof(clientEntity.Email), "clientEntity.Email is null or invalid");
+                throw new ArgumentNullException("clientEntity.Email", "clientEntity.Email is null or invalid");
 
             if (String.IsNullOrEmpty(clientEntity.Name))
-                throw new ArgumentNullException(nameof(clientEntity.Name), "clientEntity.Name is null or invalid");
+                throw new ArgumentNullException("clientEntity.Name", "clientEntity.Name is null or invalid");
 
             if (String.IsNullOrEmpty(clientEntity.Document))
-                throw new ArgumentNullException(nameof(clientEntity.Document), "clientEntity.Document is null or invalid");
+                throw new ArgumentNullException("clientEntity.Document", "clientEntity.Document is null or invalid");
 
             if(!clientEntity.Document.IsCpf())
-                throw new ArgumentNullException(nameof(clientEntity.Document), "clientEntity.Document is not a valid CPF");
+                throw new ArgumentNullException("clientEntity.Document", "clientEntity.Document is not a valid CPF");
 
             var clientAlreadyExists = GetClient(clientEntity.Email);
 
@@ -112,13 +112,13 @@ namespace Afonsoft.Petz.Controller
         {
 
             if (clientId <= 0)
-                throw new ArgumentOutOfRangeException(nameof(clientId), "ClientID is null");
+                throw new ArgumentOutOfRangeException("clientId", "ClientID is null");
 
             if (string.IsNullOrEmpty(oldPassword))
-                throw new ArgumentOutOfRangeException(nameof(oldPassword), "OldPassword is null");
+                throw new ArgumentOutOfRangeException("oldPassword", "OldPassword is null");
 
             if (string.IsNullOrEmpty(newPassword))
-                throw new ArgumentOutOfRangeException(nameof(newPassword), "NewPassword is null");
+                throw new ArgumentOutOfRangeException("newPassword", "NewPassword is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -136,11 +136,11 @@ namespace Afonsoft.Petz.Controller
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(nameof(clientId), "clientId is null");
+                        throw new ArgumentOutOfRangeException("clientId", "clientId is null");
                     }
                 }
                 else
-                    throw new ArgumentOutOfRangeException(nameof(oldPassword), "Old Password is invalid");
+                    throw new ArgumentOutOfRangeException("oldPassword", "Old Password is invalid");
             }
         }
 
@@ -155,7 +155,7 @@ namespace Afonsoft.Petz.Controller
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(petId), "This Pet is not of this client");
+                    throw new ArgumentOutOfRangeException("petId", "This Pet is not of this client");
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace Afonsoft.Petz.Controller
         public ClientEntity GetClient(String email)
         {
             if (string.IsNullOrEmpty(email))
-                throw new ArgumentNullException(nameof(email), "email is null");
+                throw new ArgumentNullException("email", "email is null");
 
             ClientEntity client;
             using (Petz_dbEntities db = new Petz_dbEntities())
@@ -224,7 +224,7 @@ namespace Afonsoft.Petz.Controller
         public void SetClient(ClientEntity clientEntity, int? userId = null)
         {
             if (clientEntity == null)
-                throw new ArgumentNullException(nameof(clientEntity), "clientEntity is null");
+                throw new ArgumentNullException("clientEntity", "clientEntity is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -333,10 +333,10 @@ namespace Afonsoft.Petz.Controller
         public void SetClientPicture(int id, byte[] bytes)
         {
             if (bytes == null)
-                throw new ArgumentNullException(nameof(bytes), "bytes is null");
+                throw new ArgumentNullException("bytes", "bytes is null");
 
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             if (bytes.Length > 512000)  // 512KB = 500 * 1024
                 throw new Exception("File too large! Limit of 512KB!");
@@ -353,7 +353,7 @@ namespace Afonsoft.Petz.Controller
         public byte[] GetClientPicture(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -364,10 +364,10 @@ namespace Afonsoft.Petz.Controller
         public void SetClientPhone(int id, PhoneEntity[] phones)
         {
             if (phones == null)
-                throw new ArgumentNullException(nameof(phones), "phones is null");
+                throw new ArgumentNullException("phones", "phones is null");
 
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -404,13 +404,13 @@ namespace Afonsoft.Petz.Controller
         public void DeleteClientPhone(int id, PhoneEntity phone)
         {
             if (phone == null)
-                throw new ArgumentNullException(nameof(phone), "phone is null");
+                throw new ArgumentNullException("phone", "phone is null");
 
             if (phone.Id <= 0)
-                throw new ArgumentNullException(nameof(phone.Id), "phone.ID is null");
+                throw new ArgumentNullException("phone.Id", "phone.ID is null");
 
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -431,7 +431,7 @@ namespace Afonsoft.Petz.Controller
         public AddressEntity[] GetClientAddress(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -473,16 +473,16 @@ namespace Afonsoft.Petz.Controller
            
 
             if (petEntity == null)
-                throw new ArgumentNullException(nameof(petEntity), "petEntity is null");
+                throw new ArgumentNullException("petEntity", "petEntity is null");
 
             if (petEntity.SubSpecies == null || petEntity.SubSpecies.Id <= 0)
-                throw new ArgumentNullException(nameof(petEntity.SubSpecies), "petEntity.SubSpecies is null");
+                throw new ArgumentNullException("petEntity.SubSpecies", "petEntity.SubSpecies is null");
 
             if (petEntity.Size == null || petEntity.Size.Id <= 0)
-                throw new ArgumentNullException(nameof(petEntity.Size), "petEntity.Size is null");
+                throw new ArgumentNullException("petEntity.Size", "petEntity.Size is null");
 
             if (petEntity.ClientId <= 0)
-                throw new ArgumentNullException(nameof(petEntity.ClientId), "ClientID is null");
+                throw new ArgumentNullException("petEntity.ClientId", "ClientID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -567,7 +567,7 @@ namespace Afonsoft.Petz.Controller
                     }
                     else
                     {
-                        throw new ArgumentOutOfRangeException(nameof(petEntity.Id), "This Pet is not of this client");
+                        throw new ArgumentOutOfRangeException("petEntity.Id", "This Pet is not of this client");
                     }
                 }
             }
@@ -576,13 +576,13 @@ namespace Afonsoft.Petz.Controller
         public void DeletePetsClient(PetsEntity petEntity, int? userId = null)
         {
             if (petEntity == null)
-                throw new ArgumentNullException(nameof(petEntity), "petEntity is null");
+                throw new ArgumentNullException("petEntity", "petEntity is null");
 
             if (petEntity.Id <= 0)
-                throw new ArgumentNullException(nameof(petEntity.Id), "petEntity.ID is null");
+                throw new ArgumentNullException("petEntity.Id", "petEntity.ID is null");
 
             if (petEntity.ClientId <= 0)
-                throw new ArgumentNullException(nameof(petEntity.ClientId), "ClientID is null");
+                throw new ArgumentNullException("petEntity.ClientId", "ClientID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -606,7 +606,7 @@ namespace Afonsoft.Petz.Controller
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(petEntity.Id), "This Pet is not of this client");
+                    throw new ArgumentOutOfRangeException("petEntity.Id", "This Pet is not of this client");
                 }
             }
         }
@@ -614,7 +614,7 @@ namespace Afonsoft.Petz.Controller
         public PetsEntity[] GetPetsClient(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             using (var db = new Petz_dbEntities())
             {
@@ -679,7 +679,7 @@ namespace Afonsoft.Petz.Controller
         public CompaniesEntity[] GetClientCompanies(int id)
         {
             if (id <= 0)
-                throw new ArgumentNullException(nameof(id), "ID is null");
+                throw new ArgumentNullException("id", "ID is null");
 
             CompaniesController controller = new CompaniesController();
             using (Petz_dbEntities db = new Petz_dbEntities())
@@ -700,10 +700,10 @@ namespace Afonsoft.Petz.Controller
         public void SetClientCompanies(int clientId, int conpanyId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (conpanyId <= 0)
-                throw new ArgumentNullException(nameof(conpanyId), "ConpanyID is null");
+                throw new ArgumentNullException("conpanyId", "ConpanyID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -720,10 +720,10 @@ namespace Afonsoft.Petz.Controller
         public void DeleteFavoriteCompanies(int clientId, int conpanyId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (conpanyId <= 0)
-                throw new ArgumentNullException(nameof(conpanyId), "ConpanyID is null");
+                throw new ArgumentNullException("conpanyId", "ConpanyID is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -750,10 +750,10 @@ namespace Afonsoft.Petz.Controller
         public HistoricEntity[] GetPetHistoric(int clientId, int petId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (petId <= 0)
-                throw new ArgumentNullException(nameof(petId), "PetID is null");
+                throw new ArgumentNullException("petId", "PetID is null");
 
             bool petClient;
             using (Petz_dbEntities db = new Petz_dbEntities())
@@ -773,10 +773,10 @@ namespace Afonsoft.Petz.Controller
         public VaccinationEntity[] GetPetVaccination(int clientId, int petId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (petId <= 0)
-                throw new ArgumentNullException(nameof(petId), "PetID is null");
+                throw new ArgumentNullException("petId", "PetID is null");
 
             bool petClient;
             using (Petz_dbEntities db = new Petz_dbEntities())
@@ -796,10 +796,10 @@ namespace Afonsoft.Petz.Controller
         public void DeleteScheduling(int clientId, int schedulingId)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (schedulingId <= 0)
-                throw new ArgumentNullException(nameof(schedulingId), "SchedulingID is null");
+                throw new ArgumentNullException("schedulingId", "SchedulingID is null");
 
             bool schedulingClient;
             using (Petz_dbEntities db = new Petz_dbEntities())
@@ -820,10 +820,10 @@ namespace Afonsoft.Petz.Controller
         public void SetPetClientPicture(int clientId, int petId, byte[] byteArrayImage)
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientID is null");
+                throw new ArgumentNullException("clientId", "ClientID is null");
 
             if (petId <= 0)
-                throw new ArgumentNullException(nameof(petId), "PetID is null");
+                throw new ArgumentNullException("petId", "PetID is null");
 
 
             if (byteArrayImage.Length > 512000)  // 512KB = 500 * 1024
@@ -844,7 +844,7 @@ namespace Afonsoft.Petz.Controller
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(petId), "This Pet is not of this client");
+                    throw new ArgumentOutOfRangeException("petId", "This Pet is not of this client");
                 }
             }
         }

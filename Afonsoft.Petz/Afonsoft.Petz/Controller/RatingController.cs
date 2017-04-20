@@ -10,13 +10,13 @@ namespace Afonsoft.Petz.Controller
         public Boolean SetClientRating(int clientId, int insertByUserId, int value, string comments = "")
         {
             if (clientId <= 0)
-                throw new ArgumentNullException(nameof(clientId), "ClientId is null");
+                throw new ArgumentNullException("clientId", "ClientId is null");
 
             if (insertByUserId <= 0)
-                throw new ArgumentNullException(nameof(insertByUserId), "InsertByUserId is null");
+                throw new ArgumentNullException("insertByUserId", "InsertByUserId is null");
 
             if (value < 0 && value > 5)
-                throw new ArgumentOutOfRangeException(nameof(value), value, "Value min 0 and max 5");
+                throw new ArgumentOutOfRangeException("value", value, "Value min 0 and max 5");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -48,13 +48,13 @@ namespace Afonsoft.Petz.Controller
         public Boolean SetUserRating(int userId, int insertByClientId, int value, string comments = "")
         {
             if (userId <= 0)
-                throw new ArgumentNullException(nameof(userId), "UserId is null");
+                throw new ArgumentNullException("userId", "UserId is null");
 
             if (insertByClientId <= 0)
-                throw new ArgumentNullException(nameof(insertByClientId), "InsertByClientId is null");
+                throw new ArgumentNullException("insertByClientId", "InsertByClientId is null");
 
             if (value < 0 && value > 5)
-                throw new ArgumentOutOfRangeException(nameof(value), value, "Value min 0 and max 5");
+                throw new ArgumentOutOfRangeException("value", value, "Value min 0 and max 5");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -86,13 +86,13 @@ namespace Afonsoft.Petz.Controller
         public Boolean SetCompanyRating(int companyId, int insertByClientId, int value, string comments = "")
         {
             if (companyId <= 0)
-                throw new ArgumentNullException(nameof(companyId), "CompanyId is null");
+                throw new ArgumentNullException("companyId", "CompanyId is null");
 
             if (insertByClientId <= 0)
-                throw new ArgumentNullException(nameof(insertByClientId), "InsertByClientId is null");
+                throw new ArgumentNullException("insertByClientId", "InsertByClientId is null");
 
             if (value < 0 && value > 5)
-                throw new ArgumentOutOfRangeException(nameof(value), value, "Value min 0 and max 5");
+                throw new ArgumentOutOfRangeException("value", value, "Value min 0 and max 5");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
@@ -117,10 +117,10 @@ namespace Afonsoft.Petz.Controller
         public Boolean SetPetRating(int petId, int insertByUserId, int value, string comments = "")
         {
             if (petId <= 0)
-                throw new ArgumentNullException(nameof(petId), "PetId is null");
+                throw new ArgumentNullException("petId", "PetId is null");
 
             if (insertByUserId <= 0)
-                throw new ArgumentNullException(nameof(insertByUserId), "InsertByUserId is null");
+                throw new ArgumentNullException("insertByUserId", "InsertByUserId is null");
 
             using (Petz_dbEntities db = new Petz_dbEntities())
             {
