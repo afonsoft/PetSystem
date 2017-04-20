@@ -27,14 +27,18 @@ namespace Afonsoft.Petz.Library
                     exceptionMessages += tmpException.Message + Environment.NewLine;
                     string traces = "";
                     var trace = new StackTrace(tmpException, true);
-                    foreach (StackFrame stack in trace.GetFrames())
+                    var stackFrames = trace.GetFrames();
+                    if (stackFrames != null)
                     {
-                        if (stack.GetFileLineNumber() > 0)
+                        foreach (StackFrame stack in stackFrames)
                         {
-                            traces += "FileName: " + stack.GetFileName() + Environment.NewLine;
-                            traces += "Metodo: " + stack.GetMethod().Name + Environment.NewLine;
-                            traces += "Line: " + stack.GetFileLineNumber() + Environment.NewLine;
-                            traces += "Column: " + stack.GetFileColumnNumber() + Environment.NewLine;
+                            if (stack.GetFileLineNumber() > 0)
+                            {
+                                traces += "FileName: " + stack.GetFileName() + Environment.NewLine;
+                                traces += "Metodo: " + stack.GetMethod().Name + Environment.NewLine;
+                                traces += "Line: " + stack.GetFileLineNumber() + Environment.NewLine;
+                                traces += "Column: " + stack.GetFileColumnNumber() + Environment.NewLine;
+                            }
                         }
                     }
                     if (!String.IsNullOrEmpty(traces))

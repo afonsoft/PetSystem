@@ -66,7 +66,7 @@ namespace Afonsoft.Petz.Library
         /// </summary>
         public static bool IsHoliday(this DateTime from)
         {
-            return Holidays(from).Where(x => x.Year == from.Year && x.Month == from.Month && x.Day == from.Day).Count() > 0;
+            return Holidays(from).Where(x => x.Year == from.Year && x.Month == from.Month && x.Day == from.Day).Any();
         }
 
         #region CalculateEaster 
@@ -117,8 +117,8 @@ namespace Afonsoft.Petz.Library
             int c = year % 7;
             int d = (19 * a + x) % 30;
             int e = (2 * b + 4 * c + 6 * d + y) % 7;
-            int dia = 0;
-            int mes = 0;
+            int dia;
+            int mes;
 
             if (d + e > 9)
             {
@@ -130,7 +130,7 @@ namespace Afonsoft.Petz.Library
                 dia = (d + e + 22);
                 mes = 3;
             }
-            return DateTime.Parse(string.Format("{0},{1},{2}", year.ToString(), mes.ToString(), dia.ToString()));
+            return DateTime.Parse($"{year},{mes},{dia}");
         }
         #endregion
 
