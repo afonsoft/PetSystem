@@ -42,7 +42,7 @@ namespace Afonsoft.Petz.Store
                     {
                         if (controller.DeleteSheduling(eventId))
                         {
-                            return JsonConvert.SerializeObject(new { isOk = true, mensagem = "Evento ("+ arrayOfScheduling.FirstOrDefault(x => Convert.ToInt32(x.id) == eventId).ToString() + ") excluido com sucesso!" });
+                            return JsonConvert.SerializeObject(new { isOk = true, mensagem = "Evento ("+ arrayOfScheduling.FirstOrDefault(x => Convert.ToInt32(x.id) == eventId) + ") excluido com sucesso!" });
                         }
                         else
                             return JsonConvert.SerializeObject(new { isOk = false, mensagem = "Não é possível excluir esse evento!" });
