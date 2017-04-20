@@ -8,5 +8,5 @@ AppVeyor<br/>
 Waffle Issues<br/>[![Stories in Ready](https://badge.waffle.io/afonsoft/PetSystem.svg?label=ready&title=Ready)](http://waffle.io/afonsoft/PetSystem)
 <br/>
 
-Thank you for downloading PetSystem. For more information please visit [http://petz.afonsoft.com.br](http://petz.afonsoft.com.br).
+Thank you for downloading PetSystem. For more information please visit [http://pet.afonsoft.com.br](http://pet.afonsoft.com.br).
 
