@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Afonsoft.Petz.Model
 {
+    [Serializable]
     public class WorkEntity
     {
         public int WeekId { get; set; }

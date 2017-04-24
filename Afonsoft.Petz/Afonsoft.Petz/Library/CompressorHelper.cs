@@ -18,13 +18,11 @@ namespace Afonsoft.Petz.Library
                 if (data == null)
                     return null;
 
-                using (var memoryStream = new MemoryStream())
+                var memoryStream = new MemoryStream();
+                using (var zipStream = new Zip.Streams.DeflaterOutputStream(memoryStream, new Zip.Deflater(Zip.Deflater.BEST_COMPRESSION), 131072))
                 {
-                    using (var zipStream = new Zip.Streams.DeflaterOutputStream(memoryStream, new Zip.Deflater(Zip.Deflater.BEST_COMPRESSION), 131072))
-                    {
-                        zipStream.Write(data, 0, data.Length);
-                        data = memoryStream.ToArray();
-                    }
+                    zipStream.Write(data, 0, data.Length);
+                    data = memoryStream.ToArray();
                 }
                 return data;
             }
