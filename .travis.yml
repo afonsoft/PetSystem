@@ -5,10 +5,14 @@ os:
   - linux
   - osx
 solution: Afonsoft.Petz/Afonsoft.Petz.sln
+env:
+  global:
+    - ResolveNuGetPackageAssets=true
+    - EnableNuGetPackageRestore=true
 install:
+  - sudo apt-get install -y gtk-sharp2
   - nuget restore Afonsoft.Petz/Afonsoft.Petz.sln
 script:
-  - xbuild /p:Configuration=Debug Afonsoft.Petz/Afonsoft.Petz.sln
   - xbuild /p:Configuration=Release Afonsoft.Petz/Afonsoft.Petz.sln
 cache:
   directories:
