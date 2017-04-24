@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 12.0.40629.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Afonsoft.Petz", "Afonsoft.Petz\Afonsoft.Petz.csproj", "{11DA991D-47DC-4248-B246-58BD16F4C5AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CE309CFB-2E36-43CD-9930-B457767B8212}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
