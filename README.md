@@ -30,7 +30,8 @@ Waffle Issues<br/>[![Stories in Ready](https://badge.waffle.io/afonsoft/PetSyste
     <td>Mono 4.2.3</td>
   </tr>
 </table>
-
-
-Thank you for downloading PetSystem. For more information please visit [http://pet.afonsoft.com.br](http://pet.afonsoft.com.br).
+<br/>
+<b>Sistema para controle do PetShop</b>
+<br/>
+Thank you for downloading PetSystem. For more information please visit [http://pet.afonsoft.com.br].
 
