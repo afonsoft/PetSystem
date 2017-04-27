@@ -12,6 +12,6 @@ nuget:
   project_feed: true
   disable_publish_on_pr: true
 before_build:
-- cmd: nuget.exe restore -verbosity detailed C:\projects\petsystem\Afonsoft.Petz\Afonsoft.Petz.sln
+- cmd: nuget.exe restore -verbosity detailed C:\projects\petsystem\Afonsoft.Petz.sln
 build:
   verbosity: detailed
