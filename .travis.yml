@@ -4,15 +4,15 @@ mono:
 os:
   - linux
   - osx
-solution: Afonsoft.Petz/Afonsoft.Petz.sln
+solution: Afonsoft.Petz.sln
 env:
   global:
     - ResolveNuGetPackageAssets=true
     - EnableNuGetPackageRestore=true
 install:
-  - nuget restore Afonsoft.Petz/Afonsoft.Petz.sln
+  - nuget restore Afonsoft.Petz.sln
 script:
-  - xbuild /p:Configuration=Release Afonsoft.Petz/Afonsoft.Petz.sln
+  - xbuild /p:Configuration=Release Afonsoft.Petz.sln
 cache:
   directories:
     - bin
