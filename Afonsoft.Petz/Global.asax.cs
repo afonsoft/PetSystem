@@ -66,7 +66,7 @@ namespace Afonsoft.Petz
             //// Get the exception object.
             Exception ex = Server.GetLastError();
             if (ex is ThreadAbortException)
-                return;
+                Server.ClearError();
         }
 
         protected void Session_End(object sender, EventArgs e)
