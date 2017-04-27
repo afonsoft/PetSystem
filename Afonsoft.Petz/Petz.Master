@@ -1,0 +1,123 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Petz.master.cs" Inherits="Afonsoft.Petz.Petz" %>
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head runat="server">
+    <title>Pet System - Gerenciamento de Pet</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-language" content="pt-br" />
+    <meta name="language" content="pt-br" />
+    <meta name="resource-type" content="document" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="robots" content="index,follow" />
+    <meta name="revisit-after" content="1" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta name="description" content="PetSystem - Sistema de agendamento de serviços de petshop" />
+    <meta name="keywords" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, calendario, Mamíferos, Aves, Répteis, Anfíbios, Peixes, Invertebrados"/>
+    <meta name="author" content="Afonso Dutra Nogueira Filho" />
+    <meta name="copyright" content="AFONSOFT 2017" />
+    <meta name="geo.placename" content="São Paulo-SP" />
+    <meta name="geo.region" content="SP-BR" />
+    <link rel="made" href="mailto:afonso.nogueira@outlook.com.br" />
+    <meta name="reply-to" content="afonso.nogueira@outlook.com.br">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="Images/pet-icon.png">
+    <link rel="android-touch-icon" href="Images/pet-icon.png" />
+    <link rel="icon" href="http://pet.afonsoft.com.br/Images/pet-icon.png">
+
+    <meta property="og:url" content="http://pet.afonsoft.com.br/" />
+    <meta property="og:image" content="http://pet.afonsoft.com.br/Images/pet-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:region" content="Brasil" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Pet System" />
+    <meta property="og:title" content="Pet System - Gerenciamento de Pet" />
+    <meta property="og:description" content="PetSystem - Sistema de agendamento de serviços de petshop" />
+    <meta property="og:keywords" content="PetSystem, Petz, Agendamento, petshop, shopping, Pet, cachorro, gato, calendario, Mamíferos, Aves, Répteis, Anfíbios, Peixes, Invertebrados" />
+
+    <link href="Content/fullcalendar.print.css" rel="stylesheet" media='print' />
+    <link href="Content/fullcalendar.min.css" rel="stylesheet" />
+    <link href="Content/maps/maps.css" rel="stylesheet" />
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="Content/animate.css" rel="stylesheet" />
+    <link href="Content/sidebar.css" rel="stylesheet" />
+    <link href="Content/PetSystem.css" rel="stylesheet" />
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="Content/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            font-size: 12px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="ContentPlaceHead" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBc1eChxuREqgy-Zcj2fAhcDe6E3-Rt7yM"></script>
+</head>
+<body>
+    <form id="form1" runat="server" enctype="multipart/form-data">
+        <%--http://www.hanselman.com/blog/ASPNETAjaxScriptCombiningAndMovingScriptResourceaxdsToStaticScripts.aspx --%>
+        <asp:ScriptManager ID="ScriptManagerMain" runat="server" EnableCdn="true" ScriptMode="Auto" AsyncPostBackTimeout="640" OnAsyncPostBackError="ScriptManagerMain_AsyncPostBackError">
+            <Scripts>
+                <asp:ScriptReference Name="jQuery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="Moment" />
+                <asp:ScriptReference Path="~/Scripts/jquery.filterTable.js" />
+                <asp:ScriptReference Path="~/Scripts/calendar/fullcalendar.min.js" />
+                <asp:ScriptReference Path="~/Scripts/calendar/pt-br.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap-notify.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery.Starrr.js" />
+                <asp:ScriptReference Path="~/Scripts/Tools.js" />
+                <asp:ScriptReference Path="~/Scripts/ie10-viewport-bug-workaround.js" />
+                <asp:ScriptReference Path="~/Scripts/maps/infobox.js" />
+                <asp:ScriptReference Path="~/Scripts/maps/markerclusterer.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="ContentPlaceHeadMain" runat="server">
+        </asp:ContentPlaceHolder>
+        <!-- Modal Alert -->
+        <div class="modal fade" id="myModalAlert" tabindex="-1" role="dialog" aria-labelledby="myModalAlertLabel" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Alerta</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myModalAlertHTML">&nbsp;</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:jQuery('body').css({ 'background-color': '#F1F3FA !important' });jQuery('#myModalAlert').modal('hide');">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.Modal Alert -->
+
+        <div id="updateProgress" class="updateProgress" style="display: none;">
+            <div id="updateProgress-img" class="updateProgress-img">
+                <img src="/Images/Preloader_2.gif" alt="Loading" title="Loading" />
+            </div>
+        </div>
+
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-23515540-2', 'auto'); ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+    </form>
+</body>
+</html>
